@@ -1,0 +1,46 @@
+/*
+* @Author: Hong
+* @Date:   2018-12-05 20:03:45
+* @Last Modified by:   Hong
+* @Last Modified time: 2018-12-06 13:43:11
+*/
+/* .router a{
+    display: block;
+    color: #999;
+    font-size: .5rem;
+    text-align: center;
+    line-height: 1rem;
+} */
+.mu-list .mu-sub-header:first-child{
+    margin-top: 0;
+}
+.mu-list{
+    padding: 0;
+}
+.mu-appbar{
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+.pt70{
+    padding-top: 70px!important;
+}
+.mu-loading-wrap{
+    height: 100%;
+}
+.mu-circular-progress{
+    width: 48px;
+    height: 48px;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+.container{
+    width: 100%;
+    padding-right: 8px;
+    padding-left: 8px;
+    margin-right: auto;
+    margin-left: auto;
+}
