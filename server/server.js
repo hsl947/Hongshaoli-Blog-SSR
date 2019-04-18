@@ -24,7 +24,7 @@ router.post('/list', (req, res, next) => {
             status: 200,
             message: '查询成功',
             data: _data,
-            count: _data.length
+            total: _data.length
         })
     }).catch(err => {
         console.log(err);
@@ -71,7 +71,7 @@ router.post('/admin/list', (req, res, next) => {
             status: 200,
             message: '查询成功',
             data: _data,
-            count: all,
+            total: all,
             page: page,
             limit: limit
         })

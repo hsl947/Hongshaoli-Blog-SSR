@@ -1,10 +1,10 @@
 <template>
-  <div class="router">
+  <div>
     <mu-appbar style="width: 100%;" color="primary">
       <mu-button icon slot="left" @click="open = !open">
         <i class="iconfont icon-caidan"></i>
       </mu-button>
-      <span>Shaoli's Blog</span>
+      <!-- <span>Shaoli's Blog</span> -->
     </mu-appbar>
     <mu-load-more class="pt70" :loading="loading" @load="load" :loaded-all="finished">
       <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
@@ -52,6 +52,9 @@
 import axios from 'axios'
 export default {
   name: "home",
+  head: {
+    title: '首页-洪少利的博客'
+  },
   data() {
     return {
       open: false,
@@ -77,7 +80,7 @@ export default {
     },
     toDetail(id) {
       this.$router.push({
-        path: '/blog/detail'
+        path: `/blog/${id}`
       });
     },
     initTimer() {
@@ -87,7 +90,11 @@ export default {
         if (timer1) clearTimeout(timer1);
         timer1 = setTimeout(() =>{
             let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            scrollTop > 300? toTop.style.bottom = "16px" : toTop.style.bottom = "-80px";
+            if (scrollTop > 300) { 
+              toTop.style.bottom = "16px"; 
+            }else { 
+              toTop.style.bottom = "-80px"; 
+            } 
         }, 300);
       }
       toTop.onclick = () => { 

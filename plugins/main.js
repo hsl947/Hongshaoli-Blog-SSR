@@ -25,7 +25,3 @@ Vue.filter('formatTime', (input) => {
     }
 
 })
-
-import '@@/static/css/iconfont.css'
-import '@@/static/css/style.css'
-import '@@/static/css/index.css'

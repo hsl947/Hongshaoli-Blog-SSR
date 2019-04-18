@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const resolve = require('path').resolve;
 
 module.exports = {
   mode: 'universal',
@@ -7,11 +8,13 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: "洪少利的主页, 加载中...",
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { renderer: 'webkit' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0' },
+      { hid: 'description', name: 'description', content: '这是洪少利的个人网站，也是个人主页，平时记录一些技术博客文章等等' },
+      { hid: 'Keywords', name: 'Keywords', content: '洪少利,HongShaoli,洪少利的个人网站，洪少利的博客，洪少利的个人主页' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
@@ -41,7 +44,7 @@ module.exports = {
       ssr: true,
     },
     {
-      src: '~plugins/vue - quill - editor',
+      src: '~plugins/vue-quill-editor',
       ssr: true,
     }
   ],
@@ -58,8 +61,21 @@ module.exports = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+    proxy: true,
+    prefix: '/api', // baseURL
+    credentials: true
   },
 
+  proxy: {
+    '/api': {
+      target: 'http://localhost:8008', // 代理地址
+      changeOrigin: true,
+      pathRewrite: {
+        '^/api': '', //将 /api 替换掉
+      },
+    },
+  },
+  
   /*
    ** Build configuration
    */
@@ -81,5 +97,9 @@ module.exports = {
       */
     }
   },
-  vendor: ['muse-ui']   //防止被打包多次
+  vendor: ['muse-ui'],   //防止被打包多次
+  server: {
+    port: 3000, // default: 3000
+    host: '127.0.0.1', // default: localhost
+  }
 }

@@ -364,22 +364,33 @@ input {
     top: 0;
     bottom: 0;
 }
-.router{
-    max-width: 750px;
-    margin: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    transition:  all cubic-bezier(.55,0,.1,1)   .3s ;
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-.page-enter-active, .page-leave-active {
+.page-enter-active {
   transition: opacity .5s;
+  animation: bounce-in .5s;
 }
-.page-enter, .page-leave-active {
+.page-leave-active {
   opacity: 0;
+  animation: bounce-out .5s;
+}
+
+@keyframes bounce-in {
+    0% {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce-out {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(50px);
+        opacity: 0;
+    }
 }

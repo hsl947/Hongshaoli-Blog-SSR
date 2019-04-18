@@ -28,6 +28,8 @@
     "muse-ui-progress": "^0.1.0",
     "muse-ui-toast": "^0.3.0",
     "nuxt": "^2.4.0",
+    "quill-image-extend-module": "^1.1.2",
+    "vue-canvas-nest": "^2.0.0",
     "vue-quill-editor": "^3.0.6"
   },
   "devDependencies": {

@@ -1,55 +1,59 @@
 <template>
-  <div>
-    <nuxt />
+  <div id="app">
+    <nuxt class="router"/>
   </div>
 </template>
+<script>
+export default {
+  name: "app",
+  data() {
+    return {
+      
+    }
+  },
+  components: {
+   
+  },
+  created() {},
+  mounted() {
+    //this.initStatic();
+  },
+  methods: {
+    initStatic() {
+      // 百度统计添加
+      var _hmt = _hmt || [];
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3a99bc5fc48167f2e4d0c32bcba6c762";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
 
+      // 友盟统计添加
+      const ym = document.createElement("script");
+      ym.src = "https://s23.cnzz.com/z_stat.php?id=1276871081&web_id=1276871081";
+      ym.language = "JavaScript";
+      document.body.appendChild(ym);
+    }
+  },
+  watch:{}
+};
+</script>
 <style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
+@import '@@/static/css/iconfont.css';
+@import '@@/static/css/style.css';
+@import '@@/static/css/index.css';
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+.router{
+  max-width: 750px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transition:  all cubic-bezier(.55,0,.1,1)   .3s ;
 }
 </style>
