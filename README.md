@@ -12,8 +12,8 @@ $ npm install
 $ npm run dev
 
 # build for production and launch server
-$ npm run build
-$ npm start
+$ nuxt build
+$ npm run start
 
 # generate static project
 $ npm run generate
