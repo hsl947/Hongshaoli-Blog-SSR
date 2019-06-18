@@ -1,12 +1,9 @@
-const pkg = require('./package')
-const resolve = require('path').resolve;
 
 module.exports = {
   mode: 'universal',
-
   /*
-   ** Headers of the page
-   */
+  ** Headers of the page
+  */
   head: {
     title: "洪少利的主页, 加载中...",
     meta: [
@@ -18,22 +15,18 @@ module.exports = {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
-
   /*
-   ** Customize the progress-bar color
-   */
+  ** Customize the progress-bar color
+  */
   loading: { color: '#ff5722' },
-
   /*
-   ** Global CSS
-   */
+  ** Global CSS
+  */
   css: [
-    
   ],
-
   /*
-   ** Plugins to load before mounting the App
-   */
+  ** Plugins to load before mounting the App
+  */
   plugins: [
     {
       src: '~plugins/MuseUI',
@@ -48,58 +41,28 @@ module.exports = {
       ssr: true,
     }
   ],
-
   /*
-   ** Nuxt.js modules
-   */
+  ** Nuxt.js modules
+  */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
   ],
   /*
-   ** Axios module configuration
-   */
+  ** Axios module configuration
+  ** See https://axios.nuxtjs.org/options
+  */
   axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-    proxy: true,
-    prefix: '/api', // baseURL
-    credentials: true
   },
-
-  proxy: {
-    '/api': {
-      target: 'http://localhost:8008', // 代理地址
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api': '', //将 /api 替换掉
-      },
-    },
-  },
-  
   /*
-   ** Build configuration
-   */
+  ** Build configuration
+  */
   build: {
     /*
-     ** You can extend webpack config here
-     */
+    ** You can extend webpack config here
+    */
     extend(config, ctx) {
-      // Run ESLint on save
-      /*
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-      */
     }
   },
-  vendor: ['muse-ui'],   //防止被打包多次
-  server: {
-    port: 3000, // default: 3000
-    host: '127.0.0.1', // default: localhost
-  }
+  vendor: ['muse-ui']   //防止被打包多次
 }

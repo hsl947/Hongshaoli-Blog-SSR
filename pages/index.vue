@@ -1,19 +1,21 @@
 <template>
-  <div>
-    
-  </div>
+  <div></div>
 </template>
 
 <script>
+//import Logo from '~/components/Logo.vue'
+
 export default {
-  name: "home",
+  head: {
+    title: '首页-洪少利的博客'
+  },
   data() {
     return {
       
     }
   },
   components: {
-
+    //Logo
   },
   methods: {
     
@@ -26,9 +28,16 @@ export default {
   mounted() {
     
   }
-};
+}
 </script>
 
-<style scoped> 
-  
+<style>
+.container {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 </style>

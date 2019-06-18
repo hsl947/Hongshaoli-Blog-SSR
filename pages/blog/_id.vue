@@ -14,24 +14,33 @@
 </template>
 
 <script>
-import axios from 'axios'
+//import axios from 'axios'
 export default {
   name: "detail",
   data() {
     return {
-      testData: {}
+      
     }
   },
   head(){
     return{
       title: this.testData.title,
       meta:[
-        {hid:'description', name:'description',content:this.testData.description}
+        {hid:'description', name:'description',content:this.testData.description},
+        {hid:'keywords', name:'keywords',content:this.testData.description}
       ]
     }
   },
+  async fetch({ store, params }) {
+      await store.dispatch('fetchListDetail', {_id: params.id})
+  },
+  computed: {
+    testData() {
+      return this.$store.state.list.details
+    }
+  },
+  /*
   async asyncData(e){
-    console.log(e);
     let param = {
       _id: e.params.id
     };
@@ -39,6 +48,7 @@ export default {
     let {data} = await axios.post('http://localhost:3000/list/detail', param);
     return {testData: data.data};
   },
+  */
   components: {
 
   },

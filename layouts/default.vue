@@ -1,6 +1,7 @@
 <template>
-  <div id="app">
+  <div>
     <nuxt class="router"/>
+    <canvas-nest v-if="lazyLoad"></canvas-nest>
   </div>
 </template>
 <script>
@@ -8,15 +9,18 @@ export default {
   name: "app",
   data() {
     return {
-      
+      lazyLoad: false
     }
   },
   components: {
-   
+    canvasNest: resolve => {require(['@/components/canvas-nest'], resolve)}
   },
   created() {},
   mounted() {
-    //this.initStatic();
+    this.initStatic();
+    setTimeout(()=>{
+      this.lazyLoad = true;
+    }, 3000);
   },
   methods: {
     initStatic() {
@@ -41,11 +45,25 @@ export default {
 @import '@@/static/css/iconfont.css';
 @import '@@/static/css/style.css';
 @import '@@/static/css/index.css';
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
+html {
+  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
 }
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
 .router{
   max-width: 750px;
   margin: auto;
@@ -54,6 +72,6 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  transition:  all cubic-bezier(.55,0,.1,1)   .3s ;
+  transition:  all cubic-bezier(.55,0,.1,1) .3s ;
 }
 </style>

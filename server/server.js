@@ -19,12 +19,13 @@ router.post('/list', (req, res, next) => {
         content: 0,
         __v: 0
     }
-    blog.find({}, ignoreField).then(_data => {
+    blog.find({}, ignoreField).skip(skip).limit(limit).then(_data => {
         res.json({
             status: 200,
             message: '查询成功',
             data: _data,
-            total: _data.length
+            total: _data.length,
+            page: page
         })
     }).catch(err => {
         console.log(err);
