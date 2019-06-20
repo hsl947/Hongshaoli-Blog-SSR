@@ -66,6 +66,7 @@ export default {
     //Logo
   },
   fetch({ store }) {
+    if(store.state.list.data.length) return;
     return Promise.all([
       store.dispatch('fetchList')
     ])
