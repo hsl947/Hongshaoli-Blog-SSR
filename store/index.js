@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -38,11 +37,11 @@ export const mutations = {
 
 export const actions = {
     // 获取文章列表
-    fetchList({ commit }, params = {}) {
-        if (!params.page) params.page = 1;
+    async fetchList({ commit }, params = {}) {
+        params.page ? params.page : params.page = 1;
         commit('updateListStatus', true);
         const isLoadMore = params.page && params.page > 1
-        return this.$axios.$post(`/list`, params)
+        return await this.$axios.$post(`/list`, params)
             .then(res => {
                 commit('updateListStatus', false);
                 if (!res.total){
@@ -56,8 +55,8 @@ export const actions = {
             .catch(err => {})
     },
     // 获取文章列表
-    fetchListDetail({ commit }, params = {}) {
-        return this.$axios.$post(`/list/detail`, params)
+    async fetchListDetail({ commit }, params = {}) {
+        return await this.$axios.$post(`/list/detail`, params)
             .then(res => {
                 console.log(res);
                 commit('updateListDetail', res.data);

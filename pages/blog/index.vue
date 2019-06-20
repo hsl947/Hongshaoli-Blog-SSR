@@ -4,9 +4,10 @@
       <mu-button icon slot="left" @click="open = !open">
         <i class="iconfont icon-caidan"></i>
       </mu-button>
-      <span>Shaoli's Blog</span>
+      <span>改版中...</span>
+      <!-- <span>Shaoli's Blog</span> -->
     </mu-appbar>
-    <mu-load-more class="pt70" :loading="$store.state.list.loading" @load="load" :loaded-all="$store.state.list.finished">
+    <mu-load-more class="pt70" :loading="loading" @load="load" :loaded-all="finished">
       <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
         <mu-list textline="three-line" v-for="item in articles" :key="item._id">
           <mu-sub-header>{{item.time | formatTime}}</mu-sub-header>
@@ -17,7 +18,7 @@
             </mu-list-item-content>
           </mu-list-item>
         </mu-list>
-        <p class="no-data" v-if="$store.state.list.finished">- 我也是有底线的 -</p>
+        <p class="no-data" v-if="finished">- 我也是有底线的 -</p>
       </mu-paper>
     </mu-load-more>
     <mu-drawer :open.sync="open" :docked="false" :left="true">
@@ -64,12 +65,20 @@ export default {
   components: {
     //Logo
   },
-  async fetch({ store }) {
-      await store.dispatch('fetchList')
+  fetch({ store }) {
+    return Promise.all([
+      store.dispatch('fetchList')
+    ])
   },
   computed: {
     articles() {
       return this.$store.state.list.data
+    },
+    loading() {
+      return this.$store.state.list.loading
+    },
+    finished() {
+      return this.$store.state.list.finished
     }
   },
   methods: {

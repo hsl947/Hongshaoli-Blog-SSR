@@ -31,8 +31,10 @@ export default {
       ]
     }
   },
-  async fetch({ store, params }) {
-      await store.dispatch('fetchListDetail', {_id: params.id})
+  fetch({ store, params }) {
+    return Promise.all([
+      store.dispatch('fetchListDetail', {_id: params.id})
+    ])
   },
   computed: {
     testData() {
