@@ -40,7 +40,7 @@
         </mu-list-item>
       </mu-list>
     </mu-drawer>
-    <mu-button id="toTop" button class="mu-button mu-fab-button mu-inverse">
+    <mu-button @click="toTop" id="toTop" button class="mu-button mu-fab-button mu-inverse">
       <div class="mu-button-wrapper">
         <div class="mu-ripple-wrapper"></div>
         <i class="iconfont icon-jiantou"></i>
@@ -83,6 +83,13 @@ export default {
     }
   },
   methods: {
+    toTop() {
+      if (timer2) clearTimeout(timer2);
+      var timer2 = setTimeout(() =>{
+          window.scrollTo(0, 0);
+          clearInterval(timer2);
+      }, 50);
+    },
     nextPageParams() {
       return {
         page: this.$store.state.list.page + 1
@@ -95,7 +102,7 @@ export default {
       this.$router.push(`/blog/${_id}`);
     },
     initTimer() {
-      var timer1, timer2; 
+      var timer1; 
       var toTop = document.getElementById("toTop");
       window.onscroll = () => { 
         if (timer1) clearTimeout(timer1);
@@ -107,13 +114,6 @@ export default {
               toTop.style.bottom = "-80px"; 
             } 
         }, 300);
-      }
-      toTop.onclick = () => { 
-        if (timer2) clearTimeout(timer2);
-        timer2 = setTimeout(() =>{
-            window.scrollTo(0, 0);
-            clearInterval(timer1);
-        }, 50);
       }
     }
   },
