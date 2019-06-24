@@ -69,6 +69,10 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+    // optimization: {
+    //   splitChunks: true
+    // },
+    extractCSS: { allChunks: true },
     extend(config, ctx) {
     }
   },
