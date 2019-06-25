@@ -52,7 +52,7 @@ router.post('/list/detail', (req, res, next) => {
             data: _data[0]
         })
     }).catch(err => {
-        console.log(err);
+        res.status(404).end();
     });
 });
 

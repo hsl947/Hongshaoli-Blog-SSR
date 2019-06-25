@@ -1,10 +1,12 @@
 <template>
-  <div></div>
+  <div>
+    <drawer></drawer>
+    <list :articles="articles" :loading="loading" :finished="finished"></list>
+    <to-top></to-top>
+  </div>
 </template>
 
 <script>
-//import Logo from '~/components/Logo.vue'
-
 export default {
   head: {
     title: '首页-洪少利的博客'
@@ -15,15 +17,29 @@ export default {
     }
   },
   components: {
-    //Logo
+    drawer: resolve => {require(['@/components/index/drawer'], resolve)},
+    toTop: resolve => {require(['@/components/index/toTop'], resolve)},
+    list: resolve => {require(['@/components/index/list'], resolve)}
+  },
+  fetch({ store }) {
+    if(store.state.list.data.length) return;
+    return Promise.all([
+      store.dispatch('fetchList')
+    ])
+  },
+  computed: {
+    articles() {
+      return this.$store.state.list.data
+    },
+    loading() {
+      return this.$store.state.list.loading
+    },
+    finished() {
+      return this.$store.state.list.finished
+    }
   },
   methods: {
     
-  },
-  created() {
-    this.$router.replace({
-      path: '/blog'
-    });
   },
   mounted() {
     
@@ -39,5 +55,28 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+.mu-paper{
+  background: none;
+}
+.mu-drawer{
+  background: #fff;
+}
+.mu-list{
+  padding-bottom: 0;
+  margin-bottom: 8px;
+  background: #fff;
+}
+.mu-list>li{
+  border-bottom: solid 1px rgba(0,0,0,.12);
+}
+.no-data{
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px 0;
+}
+.icon-caidan, .icon-jiantou{
+  font-size: 26px;
 }
 </style>

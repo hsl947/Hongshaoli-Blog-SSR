@@ -1,20 +1,11 @@
 <template>
   <div v-cloak>
-      <mu-appbar style="width: 100%;" color="primary">
-        <mu-button icon slot="left" onclick="window.history.back()">
-          <i class="iconfont icon-fanhui"></i>
-        </mu-button>
-        <span v-text="testData.title"></span>
-      </mu-appbar>
-      <p class="time pt70">{{testData.time | formatTime}} - 洪少利</p>
-      <div class="ql-container ql-snow" style="border: none;height: auto;">
-        <div class="ql-editor" v-html="testData.content"></div>
-      </div>
+      <appbar :testData="testData"></appbar>
+      <contents :testData="testData"></contents>
   </div>
 </template>
 
 <script>
-//import axios from 'axios'
 export default {
   name: "detail",
   data() {
@@ -23,13 +14,17 @@ export default {
     }
   },
   head(){
+    const {testData} = this;
     return{
-      title: this.testData.title,
+      title: testData.title || '',
       meta:[
-        {hid:'description', name:'description',content:this.testData.description},
-        {hid:'keywords', name:'keywords',content:this.testData.description}
+        {hid:'description', name:'description',content:testData.description},
+        {hid:'keywords', name:'keywords',content:testData.description}
       ]
     }
+  },
+  validate({ params, store }) {
+    return params.id
   },
   fetch({ store, params }) {
     return Promise.all([
@@ -41,18 +36,9 @@ export default {
       return this.$store.state.list.details
     }
   },
-  /*
-  async asyncData(e){
-    let param = {
-      _id: e.params.id
-    };
-
-    let {data} = await axios.post('http://localhost:3000/list/detail', param);
-    return {testData: data.data};
-  },
-  */
   components: {
-
+    appbar: resolve => {require(['@/components/detail/appbar'], resolve)},
+    contents: resolve => {require(['@/components/detail/contents'], resolve)}
   },
   methods: {
     
@@ -67,6 +53,9 @@ export default {
 </script>
 
 <style> 
+  .mu-appbar{
+    top: 0;
+  }
   .time{
     font-size: 16px;
     color: #999;

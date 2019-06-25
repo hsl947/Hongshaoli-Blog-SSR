@@ -58,9 +58,12 @@ export const actions = {
     async fetchListDetail({ commit }, params = {}) {
         return await this.$axios.$post(`/list/detail`, params)
             .then(res => {
-                console.log(res);
                 commit('updateListDetail', res.data);
             })
-            .catch(err => { })
+            .catch(err => {
+                this.$router.replace({
+                    path: '/404'
+                });
+            })
     }
 }

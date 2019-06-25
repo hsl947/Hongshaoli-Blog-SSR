@@ -73,7 +73,7 @@
 
       <div class="tips" id="tips">
         <p>迷路了，不怕</p>
-        <nuxt-link to="/blog" replace class="return-btn">点击这里返回</nuxt-link>
+        <nuxt-link to="/" replace class="return-btn">« Back</nuxt-link>
         <!-- <p @click="toIndex" style="color:#2196f3">点击这里返回</p> -->
       </div>
     </div>
@@ -105,11 +105,6 @@ export default {
           return 0;
           break;
       }
-    },
-    toIndex() {
-        this.$router.replace({
-            path: '/blog'
-        });
     }
   },
   created() {},

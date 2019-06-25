@@ -5,6 +5,16 @@
   </div>
 </template>
 <script>
+if (process.browser) {
+    //判断是pc还是h5
+    var webType = function () {
+      if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+        return 'mobile';
+      } else {
+        return 'pc';
+      }
+    }();
+}
 export default {
   name: "app",
   data() {
@@ -15,7 +25,9 @@ export default {
   components: {
     canvasNest: resolve => {require(['@/components/canvas-nest'], resolve)}
   },
-  created() {},
+  created() {
+    
+  },
   mounted() {
     this.initStatic();
     this.initAnimate();
@@ -48,7 +60,7 @@ export default {
           window.oRequestAnimationFrame ||
           window.msRequestAnimationFrame ||
           function (callback){
-            setTimeout(callback,1000/600);
+            setTimeout(callback,1000/60);
           }
         })();
         init();
@@ -61,6 +73,7 @@ export default {
               font-size: 18px;
               font-style: normal;
               text-shadow: 0 0 4px #999;
+              z-index: 9999;
           `);
           attachEvent();
           gameloop();

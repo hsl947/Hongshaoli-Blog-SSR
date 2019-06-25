@@ -38,7 +38,11 @@ module.exports = {
     },
     {
       src: '~plugins/vue-quill-editor',
-      ssr: true,
+      ssr: false,
+    },
+    {
+      src: '~plugins/fastclick',
+      ssr: false,
     }
   ],
   /*
