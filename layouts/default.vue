@@ -135,6 +135,7 @@ export default {
 };
 </script>
 <style>
+@import '@@/static/css/material-icons.css';
 @import '@@/static/css/iconfont.css';
 @import '@@/static/css/style.css';
 @import '@@/static/css/index.css';

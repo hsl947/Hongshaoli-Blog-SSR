@@ -23,7 +23,6 @@ Vue.filter('formatTime', (input) => {
     } else {
         return '';
     }
-
 })
 
 

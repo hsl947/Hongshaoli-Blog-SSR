@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 export const state = () => {
     return {
+        admin_token: process.client?localStorage.getItem('admin_token') : '',
         list: {
             data: [],
             loading: true,
@@ -16,6 +17,20 @@ export const state = () => {
 }
 
 export const mutations = {
+    getToken(state, token) {
+        if (process.client){
+            let token = localStorage.getItem('admin_token');
+            state.admin_token = token;
+        } 
+    },
+    setToken(state, token) {
+        state.admin_token = token;
+        if (process.client) localStorage.setItem('admin_token', token);
+    },
+    delToken(state) {
+        state.admin_token = ''
+        if (process.client) localStorage.setItem('admin_token', '');     
+    },
     // 文章列表
     updateListData(state, action) {
         state.list.data = action.data
@@ -54,7 +69,7 @@ export const actions = {
             })
             .catch(err => {})
     },
-    // 获取文章列表
+    // 获取文章详情
     async fetchListDetail({ commit }, params = {}) {
         return await this.$axios.$post(`/list/detail`, params)
             .then(res => {

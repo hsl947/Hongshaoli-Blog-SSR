@@ -43,7 +43,8 @@ module.exports = {
     {
       src: '~plugins/fastclick',
       ssr: false,
-    }
+    },
+    '~/plugins/route'
   ],
   /*
   ** Nuxt.js modules

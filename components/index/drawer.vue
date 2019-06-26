@@ -15,11 +15,9 @@
         <mu-list-item button :to="'/admin'">
           <mu-list-item-title>Admin后台首页</mu-list-item-title>
         </mu-list-item>
-        <!--
-                <mu-list-item button :to="'/chat_login'">
-                <mu-list-item-title>测试聊天</mu-list-item-title>
-                </mu-list-item> 
-        -->
+        <mu-list-item button :to="'/chat_login'">
+          <mu-list-item-title>测试聊天</mu-list-item-title>
+        </mu-list-item> 
         <mu-list-item button target="_blank" href="https://www.hongshaoli.cn/">
           <mu-list-item-title>关于我</mu-list-item-title>
         </mu-list-item>
