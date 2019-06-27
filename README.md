@@ -1,6 +1,13 @@
 # nuxt-app
 
-> My mathematical Nuxt.js project
+> My first Nuxt.js project
+
+技术栈
+- node.js
+- express
+- mongoDB
+- nuxt.js
+- Vue.js
 
 ## Build Setup
 
