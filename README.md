@@ -2,7 +2,7 @@
 
 > My first Nuxt.js project
 
-技术栈
+### 技术栈
 - node.js
 - express
 - mongoDB
