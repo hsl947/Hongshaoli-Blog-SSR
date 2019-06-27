@@ -6,6 +6,8 @@ var user = require('./db/front').user
 var multer = require('multer'); //接收图片
 var fs = require('fs'); //操作文件
 
+var path = require('path');
+
 router.get('/test', (req, res, next) => {
     res.send('test api ok!')
 });
@@ -153,8 +155,11 @@ router.post('/admin/login', (req, res, next) => {
 });
 //定义图片上传的临时目录
 var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './uploads');
+    async destination(req, file, cb) {
+        const upload_path = path.join(__dirname, 'uploads');
+        let isExists = await fs.existsSync(upload_path); //判断目录是否存在
+        if (!isExists) fs.mkdirSync(upload_path); //不存在的话，创建目录
+        cb(null, path.join(__dirname, 'uploads'));
     },
     filename: function (req, file, cb) {
         cb(null, Date.now() + '.' + file.originalname.split('.').slice(-1));

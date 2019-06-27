@@ -54,7 +54,7 @@ export default {
           ImageExtend: {
             loading: true,
             name: 'img',
-            action: '/api/file/upload',
+            action: '/file/upload',
             response: (res) => {
               return res.url;
             }
