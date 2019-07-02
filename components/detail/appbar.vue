@@ -6,7 +6,12 @@
       </mu-button>
       <span v-text="testData.title"></span>
     </mu-appbar>
-    <p class="time pt70">{{testData.time | formatTime}} - 洪少利</p>
+    <p class="time pt70">
+      {{testData.time | formatTime}} - 洪少利 
+      <span class="view-nums" v-if="testData.view">
+        <i class=" mu-icon material-icons mu-icon-right" style="user-select: none;">visibility</i> {{testData.view}}
+      </span>
+    </p>
   </div>
 </template>
  
@@ -29,5 +34,14 @@ export default {
 }
 </script>
  
-<style>
+<style scoped>
+  .view-nums{
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+  }
+  .view-nums .mu-icon{
+    font-size: 20px;
+    padding: 0 4px 0 30px;
+  }
 </style>

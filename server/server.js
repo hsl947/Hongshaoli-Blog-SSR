@@ -184,7 +184,7 @@ router.post('/list/view', async (req, res, next) => {
     let data = await blog.find(req.body, {view: 1});
     let view_num = data[0].view || 0;
     view_num++;
-    blog.update(req.body, { view: view_num }).then(_data => {
+    blog.updateOne(req.body, { $set: { "view": view_num } }).then(_data => {
         res.json({
             status: 200,
             message: '更新成功',

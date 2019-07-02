@@ -82,13 +82,16 @@ export default {
 .view-num{
     position: absolute;
     right: 20px;
+    top: 0;
     height: 48px;
     line-height: 48px;
     font-size: 14px;
+    display: flex;
+    align-items: center;
 }
 .view-num .mu-icon{
   font-size: 20px;
-  vertical-align: text-top;
+  padding-right: 4px;
 }
 @keyframes refreshRotate{
   from {
