@@ -26,4 +26,8 @@
   content: "\e656";
 }
 
+.icon-refresh:before {
+  content: "\e67c";
+}
+
 

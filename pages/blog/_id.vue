@@ -28,7 +28,8 @@ export default {
   },
   fetch({ store, params }) {
     return Promise.all([
-      store.dispatch('fetchListDetail', {_id: params.id})
+      store.dispatch('fetchListDetail', {_id: params.id}),
+      store.dispatch('updateListNum', {_id: params.id})
     ])
   },
   computed: {
@@ -47,7 +48,7 @@ export default {
 
   },
   mounted() {
-
+    
   }
 };
 </script>

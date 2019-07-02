@@ -80,5 +80,15 @@ export const actions = {
                     path: '/404'
                 });
             })
+    },
+    // 获取文章详情
+    async updateListNum({ commit }, params = {}) {
+        return await this.$axios.$post(`/list/view`, params)
+            .then(res => {
+                
+            })
+            .catch(err => {
+                
+            })
     }
 }

@@ -5,7 +5,9 @@ var listSchema = new Schema({
     title: { type: String },
     time: { type: Date },
     description: { type: String },
-    content: { type: String }
+    content: { type: String },
+    view: { type: Number },
+    isTop: { type: Boolean }
 });
 var blogModel = db.model('Blog', listSchema);
 

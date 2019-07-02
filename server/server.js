@@ -171,4 +171,28 @@ router.post('/file/upload', upload.single('img'), function (req, res) {
     res.json({ url: '/uploads/' + req.file.filename });
 })
 
+//增加阅读数
+router.post('/list/view', async (req, res, next) => {
+    if (!req.body._id) {
+        res.json({
+            status: 100,
+            message: '更新失败',
+            data: {}
+        })
+        return;
+    }
+    let data = await blog.find(req.body, {view: 1});
+    let view_num = data[0].view || 0;
+    view_num++;
+    blog.update(req.body, { view: view_num }).then(_data => {
+        res.json({
+            status: 200,
+            message: '更新成功',
+            data: _data[0]
+        })
+    }).catch(err => {
+        
+    });
+});
+
 module.exports = router;

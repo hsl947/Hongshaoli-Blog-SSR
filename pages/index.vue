@@ -79,4 +79,26 @@ export default {
 .icon-caidan, .icon-jiantou{
   font-size: 26px;
 }
+.view-num{
+    position: absolute;
+    right: 20px;
+    height: 48px;
+    line-height: 48px;
+    font-size: 14px;
+}
+.view-num .mu-icon{
+  font-size: 20px;
+  vertical-align: text-top;
+}
+@keyframes refreshRotate{
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.refreshing{
+  animation: refreshRotate 2s 1;
+}
 </style>

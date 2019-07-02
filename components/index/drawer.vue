@@ -6,6 +6,9 @@
       </mu-button>
       <span>改版中...</span>
       <!-- <span>Shaoli's Blog</span> -->
+      <mu-button icon slot="right" @click="refresh">
+        <i class="iconfont icon-refresh" :class="{'refreshing': refreshing}"></i>
+      </mu-button>
     </mu-appbar>
     <mu-drawer :open.sync="open" :docked="false" :left="true">
       <mu-list>
@@ -35,13 +38,24 @@ export default {
   props: {},
   data() {
     return {
-      open: false
+      open: false,
+      refreshing: false
     }
   },
   components: {},
   created() {},
   computed: {},
-  methods: {},
+  methods: {
+    refresh() {
+      if(this.refreshing) return;
+      this.refreshing = true;
+      window.scrollTo(0, 0);
+      this.$store.dispatch('fetchList', {page: 1});
+      setTimeout(()=>{
+        this.refreshing = false;
+      }, 2000)
+    }
+  },
   watch: {}
 }
 </script>
