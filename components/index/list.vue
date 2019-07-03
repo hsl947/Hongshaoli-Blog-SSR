@@ -4,9 +4,14 @@
       <mu-list textline="three-line" v-for="(item, index) in articles" :key="item._id">
         <mu-sub-header>
           {{item.time | formatTime}}
-          <span class="view-num" v-if="item.view">
-            <i class=" mu-icon material-icons mu-icon-right" style="user-select: none;">visibility</i> {{item.view}}
-          </span>  
+          <p class="view-num">
+            <span class="item" v-if="item.comments.length">
+              <i class=" mu-icon material-icons mu-icon-right" style="user-select: none;">comment</i> {{item.comments.length}}
+            </span>
+            <span class="item" v-if="item.view">
+              <i class=" mu-icon material-icons mu-icon-right" style="user-select: none;">visibility</i> {{item.view}}
+            </span>
+          </p>   
         </mu-sub-header>
         <mu-list-item button @click="toDetail(item, index)">
           <mu-list-item-content>

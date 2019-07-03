@@ -63,14 +63,15 @@ export default {
       this.$refs.form.validate().then((result) => {
         if(result){
           this.formData._id = this.testData.id;
-          this.$axios.post('/list/addComment', this.formData).then((data)=> {
+          this.$axios.post('/list/addComment', this.formData).then(async(data)=> {
             let _data = data.data;
             if(_data.status == 200){
               this.$toast.success(_data.message);
               this.formData = {};
-              this.$store.dispatch('fetchComments', {_id: this.testData.id});
+              await this.$store.dispatch('fetchComments', {_id: this.testData.id});
+              this.testData = this.$store.state.list.comments;
             }else{
-                this.$toast.error(_data.message);
+              this.$toast.error(_data.message);
             }
           });
         }

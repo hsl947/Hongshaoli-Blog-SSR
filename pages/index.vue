@@ -91,7 +91,11 @@ export default {
 }
 .view-num .mu-icon{
   font-size: 20px;
-  padding-right: 4px;
+  padding: 0 4px 0 8px;
+}
+.view-num .item{
+  display: flex;
+  align-items: center;
 }
 @keyframes refreshRotate{
   from {

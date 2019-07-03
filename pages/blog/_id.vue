@@ -72,6 +72,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: nowrap;
   }
   .ql-container.ql-snow{
     font-size: 16px;
