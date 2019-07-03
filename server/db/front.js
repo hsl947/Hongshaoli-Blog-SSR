@@ -7,7 +7,8 @@ var listSchema = new Schema({
     description: { type: String },
     content: { type: String },
     view: { type: Number },
-    isTop: { type: Boolean }
+    isTop: { type: Boolean },
+    comments: { type: Array}
 });
 var blogModel = db.model('Blog', listSchema);
 

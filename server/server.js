@@ -176,7 +176,7 @@ router.post('/list/view', async (req, res, next) => {
     if (!req.body._id) {
         res.json({
             status: 100,
-            message: '更新失败',
+            message: '更新阅读数量失败',
             data: {}
         })
         return;
@@ -187,11 +187,71 @@ router.post('/list/view', async (req, res, next) => {
     blog.updateOne(req.body, { $set: { "view": view_num } }).then(_data => {
         res.json({
             status: 200,
-            message: '更新成功',
+            message: '更新阅读数量成功',
             data: _data[0]
         })
     }).catch(err => {
         
+    });
+});
+
+//获取评论列表
+router.post('/list/comments', async (req, res, next) => {
+    if (!req.body._id) {
+        res.json({
+            status: 100,
+            message: '查询评论失败',
+            data: {}
+        })
+        return;
+    }
+    let fields = {
+        _id: 1,
+        comments: 1
+    }
+    let params = {
+        _id: req.body._id
+    }
+    blog.find(params, fields).then(_data => {
+        res.json({
+            status: 200,
+            message: '查询评论成功',
+            data: _data[0].comments,
+            id: req.body._id
+        })
+    }).catch(err => {
+        res.status(404).end();
+    });
+});
+
+//添加评论
+router.post('/list/addComment', async (req, res, next) => {
+    if (!req.body._id) {
+        res.json({
+            status: 100,
+            message: '更新评论失败',
+            data: {}
+        })
+        return;
+    }
+    let params = {
+        _id: req.body._id
+    }
+    let data = await blog.find(params, { comments: 1 });
+    let comments = data[0].comments || [];
+    let json = {
+        userName: req.body.userName,
+        content: req.body.content
+    }
+    comments.push(json);
+    blog.updateOne(params, { $set: { "comments": comments } }).then(_data => {
+        res.json({
+            status: 200,
+            message: '更新评论成功',
+            data: _data[0]
+        })
+    }).catch(err => {
+
     });
 });
 

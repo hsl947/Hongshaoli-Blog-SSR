@@ -25,8 +25,10 @@
     "muse-ui-message": "^0.2.1",
     "muse-ui-progress": "^0.1.0",
     "muse-ui-toast": "^0.3.0",
+    "node-sass": "^4.12.0",
     "nuxt": "^2.4.0",
     "quill-image-extend-module": "^1.1.2",
+    "sass-loader": "^7.1.0",
     "vue-canvas-nest": "^2.0.0",
     "vue-quill-editor": "^3.0.6"
   },

@@ -47,6 +47,9 @@ export const mutations = {
     },
     updateListDetail(state, action) {
         state.list.details = action
+    },
+    fetchComments(state, action) {
+        state.list.comments = action
     }
 }
 
@@ -81,7 +84,7 @@ export const actions = {
                 });
             })
     },
-    // 获取文章详情
+    // 更新阅读数
     async updateListNum({ commit }, params = {}) {
         return await this.$axios.$post(`/list/view`, params)
             .then(res => {
@@ -89,6 +92,16 @@ export const actions = {
             })
             .catch(err => {
                 
+            })
+    },
+    // 获取评论列表
+    async fetchComments({ commit }, params = {}) {
+        return await this.$axios.$post(`/list/comments`, params)
+            .then(res => {
+                commit('fetchComments', res);
+            })
+            .catch(err => {
+
             })
     }
 }

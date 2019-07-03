@@ -2,6 +2,7 @@
   <div v-cloak>
       <appbar :testData="testData"></appbar>
       <contents :testData="testData"></contents>
+      <comments :testData="comments"></comments>
   </div>
 </template>
 
@@ -29,17 +30,22 @@ export default {
   fetch({ store, params }) {
     return Promise.all([
       store.dispatch('fetchListDetail', {_id: params.id}),
-      store.dispatch('updateListNum', {_id: params.id})
+      store.dispatch('updateListNum', {_id: params.id}),
+      store.dispatch('fetchComments', {_id: params.id})
     ])
   },
   computed: {
     testData() {
       return this.$store.state.list.details
+    },
+    comments() {
+      return this.$store.state.list.comments
     }
   },
   components: {
     appbar: resolve => {require(['@/components/detail/appbar'], resolve)},
-    contents: resolve => {require(['@/components/detail/contents'], resolve)}
+    contents: resolve => {require(['@/components/detail/contents'], resolve)},
+    comments: resolve => {require(['@/components/detail/comments'], resolve)}
   },
   methods: {
     
