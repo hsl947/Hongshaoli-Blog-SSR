@@ -48,9 +48,11 @@ export default {
   methods: {
     refresh() {
       if(this.refreshing) return;
+      this.$store.commit('updateListEnd', false);
+      this.$store.commit('updateListPage', 1);
+      this.$store.dispatch('fetchList', {page: 1});
       this.refreshing = true;
       window.scrollTo(0, 0);
-      this.$store.dispatch('fetchList', {page: 1});
       setTimeout(()=>{
         this.refreshing = false;
       }, 2000)

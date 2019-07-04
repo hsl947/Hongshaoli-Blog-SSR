@@ -21,10 +21,10 @@
     <div class="comment-form">
       <mu-form ref="form" :model="formData" class="mu-demo-form">
         <mu-form-item label="" prop="userName" :rules="userNameRules">
-          <mu-text-field @keyup.enter="submit" icon="person" v-model="formData.userName" full-width max-length="16" prop="userName" placeholder="请输入您的大名"></mu-text-field>
+          <mu-text-field @keyup.enter="submit" icon="person" v-model="formData.userName" full-width max-length="16" type="text" prop="userName" placeholder="请输入您的大名"></mu-text-field>
          </mu-form-item>
         <mu-form-item label="" prop="content" :rules="contentRules">
-          <mu-text-field @keyup.enter="submit" multi-line :rows="4" icon="comment" full-width max-length="100" type="text" v-model="formData.content" prop="content" placeholder="说点什么吧"></mu-text-field>
+          <mu-text-field @keyup.enter="submit" multi-line :rows="4" icon="comment" full-width max-length="100" v-model="formData.content" prop="content" placeholder="说点什么吧"></mu-text-field>
         </mu-form-item>
         <mu-form-item class="form-item">
           <mu-button color="primary" @click="submit">发表</mu-button>
@@ -88,6 +88,7 @@ export default {
 <style  lang="scss">
   .comment-list{
     background: #fff;
+    margin-top: 30px;
     li{
       display: flex;
       justify-content: flex-start;

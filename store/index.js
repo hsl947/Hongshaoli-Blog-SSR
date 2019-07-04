@@ -50,6 +50,9 @@ export const mutations = {
     },
     fetchComments(state, action) {
         state.list.comments = action
+    },
+    updateListPage(state, action) {
+        state.list.page = action
     }
 }
 

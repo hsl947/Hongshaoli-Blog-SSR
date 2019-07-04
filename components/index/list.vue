@@ -13,12 +13,14 @@
             </span>
           </p>   
         </mu-sub-header>
-        <mu-list-item button @click="toDetail(item, index)">
-          <mu-list-item-content>
-            <mu-list-item-title v-text="item.title"></mu-list-item-title>
-            <mu-list-item-sub-title v-text="item.description"></mu-list-item-sub-title>
-          </mu-list-item-content>
-        </mu-list-item>
+        <nuxt-link :to="'/blog/'+item._id">
+          <mu-list-item button>
+            <mu-list-item-content>
+              <mu-list-item-title v-text="item.title"></mu-list-item-title>
+              <mu-list-item-sub-title v-text="item.description"></mu-list-item-sub-title>
+            </mu-list-item-content>
+          </mu-list-item>
+        </nuxt-link>
       </mu-list>
       <p class="no-data" v-if="finished">- 我也是有底线的 -</p>
     </mu-paper>
