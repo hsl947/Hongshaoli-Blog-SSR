@@ -65,7 +65,7 @@ export default {
   methods: {
     getIP() {
       const script = document.createElement("script");
-      script.src = "http://pv.sohu.com/cityjson?ie=utf-8";
+      script.src = "https://pv.sohu.com/cityjson?ie=utf-8";
       document.body.appendChild(script);
       script.onload = ()=> {
         this.formData.ip = returnCitySN.cip;
@@ -76,9 +76,6 @@ export default {
       this.$refs.form.validate().then((result) => {
         if(result){
           this.formData._id = this.testData.id;
-          this.$axios.get('http://pv.sohu.com/cityjson?ie=utf-8').then(async(data)=> {
-            
-          });
           this.$axios.post('/list/addComment', this.formData).then(async(data)=> {
             let _data = data.data;
             if(_data.status == 200){
