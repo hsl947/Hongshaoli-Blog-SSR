@@ -7,7 +7,9 @@
         <img v-if="index%2==0" class="avatar" src="/uploads/anonymous1.jpg" alt="">
         <img v-else class="avatar" src="/uploads/anonymous2.jpg" alt="">
         <div class="comment-infos">
-          <p class="user-name" v-text="item.userName"></p>
+          <p class="user-name">
+            {{item.userName}} <span class="from-city" v-if="item.city">--{{item.city}}</span>
+          </p>
           <p class="user-content" v-text="item.content"></p>
         </div>
       </li>
@@ -57,12 +59,26 @@ export default {
   },
   components: {},
   created() {},
-  mounted() {},
+  mounted() {
+    this.getIP();
+  },
   methods: {
+    getIP() {
+      const script = document.createElement("script");
+      script.src = "http://pv.sohu.com/cityjson?ie=utf-8";
+      document.body.appendChild(script);
+      script.onload = ()=> {
+        this.formData.ip = returnCitySN.cip;
+        this.formData.city = returnCitySN.cname;
+      }
+    },
     submit () {
       this.$refs.form.validate().then((result) => {
         if(result){
           this.formData._id = this.testData.id;
+          this.$axios.get('http://pv.sohu.com/cityjson?ie=utf-8').then(async(data)=> {
+            
+          });
           this.$axios.post('/list/addComment', this.formData).then(async(data)=> {
             let _data = data.data;
             if(_data.status == 200){
@@ -122,5 +138,9 @@ export default {
   .comment-form .mu-form-item .mu-input, 
   .comment-form .mu-form-item__error .mu-form-item-help{
     padding-left: 56px;
+  }
+  .from-city{
+    font-size: 12px;
+    color: #999;
   }
 </style>

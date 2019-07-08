@@ -241,7 +241,9 @@ router.post('/list/addComment', async (req, res, next) => {
     let comments = data[0].comments || [];
     let json = {
         userName: req.body.userName,
-        content: req.body.content
+        content: req.body.content,
+        ip: req.body.ip,
+        city: req.body.city
     }
     comments.push(json);
     blog.updateOne(params, { $set: { "comments": comments } }).then(_data => {
