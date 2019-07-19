@@ -78,6 +78,11 @@ module.exports = {
     //   splitChunks: true
     // },
     extractCSS: { allChunks: true },
+    splitChunks: {
+      layouts: false,
+      pages: false, // by default true, will cause bad experience
+      commons: true
+    },
     extend(config, ctx) {
     }
   },
