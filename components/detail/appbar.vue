@@ -37,7 +37,13 @@ export default {
   mounted() {},
   methods: {
     toList() {
-      this.$router.push(`/`)
+      //为了保持后退滚动条位置
+      let hasBackUrl = localStorage.getItem('hasBackUrl');
+      if(hasBackUrl == 'yes') {
+        window.history.back();
+      }else{
+        this.$router.push(`/`)
+      }
     }
   }
 }
