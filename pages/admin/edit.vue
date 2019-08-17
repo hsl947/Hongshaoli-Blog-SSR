@@ -89,15 +89,14 @@ export default {
      submit () {
       this.$refs.form.validate().then((result) => {
         if(result){
-          this.$axios.post('/admin/edit', this.formData).then((data)=> {
-            let _data = data.data;
-            if(_data.status == 200){
-              this.$toast.success(_data.message);
+          this.$axios.post('/admin/edit', this.formData).then(({data})=> {
+            if(data.status == 200){
+              this.$toast.success(data.message);
               this.$router.replace({
                 path: '/admin'
               });
             }else{
-              this.$toast.error(_data.message);
+              this.$toast.error(data.message);
             }
           });
         }
@@ -117,15 +116,14 @@ export default {
         type: 'warning'
       }).then(({ result }) => {
         if (result) {
-         this.$axios.post('/admin/delete', this.formData).then((data)=> {
-            let _data = data.data;
-            if(_data.status == 200){
-              this.$toast.success(_data.message);
+         this.$axios.post('/admin/delete', this.formData).then(({data})=> {
+            if(data.status == 200){
+              this.$toast.success(data.message);
               this.$router.replace({
                 path: '/admin'
               });
             }else{
-              this.$toast.error(_data.message);
+              this.$toast.error(data.message);
             }
           });
         } else {}
