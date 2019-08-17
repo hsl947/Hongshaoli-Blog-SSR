@@ -181,6 +181,22 @@ router.post('/admin/login', (req, res, next) => {
         console.log(err);
     });
 });
+//admin后台退出登录
+router.post('/admin/logout', (req, res, next) => {
+    // let cookies = req.signedCookies;
+    // if(!cookies || !cookies.cur_user){
+    //     res.json({
+    //         status: 401,
+    //         message: '操作失败，非法登录！'
+    //     });
+    //     return;
+    // }
+    res.clearCookie('cur_user');
+    res.json({
+        status: 200,
+        message: '退出登录成功！'
+    })
+});
 //定义图片上传的临时目录
 var storage = multer.diskStorage({
     async destination(req, file, cb) {
