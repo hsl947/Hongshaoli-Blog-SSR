@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 /**
  * 设置应用路由
  */
+app.use(cookieParser('abcdef123456'));
 app.use('/', routes);
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 

@@ -85,6 +85,15 @@ router.post('/admin/list', (req, res, next) => {
 
 //admin文章添加
 router.post('/admin/add', (req, res, next) => {
+    let cookies = req.signedCookies;
+    if(!cookies || !cookies.cur_user){
+        res.json({
+            status: 401,
+            message: '操作失败，非法登录！'
+        });
+        return;
+    }
+
     var data = req.body;
     let Blog = new blog(data);
     Blog.save((err) => {
@@ -101,6 +110,15 @@ router.post('/admin/add', (req, res, next) => {
 
 //admin文章编辑
 router.post('/admin/edit', (req, res, next) => {
+    let cookies = req.signedCookies;
+    if(!cookies || !cookies.cur_user){
+        res.json({
+            status: 401,
+            message: '操作失败，非法登录！'
+        });
+        return;
+    }
+
     var data = req.body;
     let target = { _id: data._id };
     blog.update(target, data, (err) => {
@@ -117,6 +135,15 @@ router.post('/admin/edit', (req, res, next) => {
 
 //admin文章删除
 router.post('/admin/delete', (req, res, next) => {
+    let cookies = req.signedCookies;
+    if(!cookies || !cookies.cur_user){
+        res.json({
+            status: 401,
+            message: '操作失败，非法登录！'
+        });
+        return;
+    }
+    
     var data = req.body;
     let target = { _id: data._id };
     blog.remove(target, (err) => {
@@ -136,6 +163,7 @@ router.post('/admin/login', (req, res, next) => {
     var data = req.body;
     user.findOne(data).then(_data => {
         if (_data) {
+            if(_data.token != 'guest') res.cookie('cur_user', _data.token,{ maxAge:30*24*3600*1000, signed: true, httpOnly: true });
             res.json({
                 status: 200,
                 message: '登录成功',

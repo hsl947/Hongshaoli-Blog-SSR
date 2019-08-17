@@ -4,7 +4,7 @@
       <mu-button icon slot="left" @click="open=true">
         <i class="iconfont icon-caidan"></i>
       </mu-button>
-      <span>改版中...</span>
+      <span>改版ing...</span>
       <!-- <span>Shaoli's Blog</span> -->
       <mu-button icon slot="right" @click="refresh">
         <i class="iconfont icon-refresh" :class="{'refreshing': refreshing}"></i>

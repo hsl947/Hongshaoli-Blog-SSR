@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  middleware: 'index',
   head: {
     title: '首页-洪少利的博客'
   },

@@ -88,14 +88,14 @@ export default {
       this.$refs.form.validate().then((result) => {
         if(result){
           this.formData.time = new Date();
-          this.$axios.post('/admin/add', this.formData).then((_data)=> {
-            if(_data.status == 200){
-              this.$toast.success(_data.message);
+          this.$axios.post('/admin/add', this.formData).then(({data})=> {
+            if(data.status == 200){
+              this.$toast.success(data.message);
               this.$router.replace({
                 path: '/admin'
               });
             }else{
-              this.$toast.error(_data.message);
+              this.$toast.error(data.message);
             }
           });
         }
