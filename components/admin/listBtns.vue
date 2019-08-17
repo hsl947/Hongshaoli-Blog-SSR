@@ -32,6 +32,7 @@ export default {
     exit() {
       this.$toast.success('退出登录成功！');
       this.$store.commit('delToken');
+      document.cookie = 'cur_user' + '=;  expires=Thu, 01 Jan 1970 00:00:01 GMT;'
       this.$router.replace({
         name: 'admin-login'
       });

@@ -5,3 +5,6 @@ Vue.use(MuseUI)
 
 import Toast from 'muse-ui-toast'
 Vue.use(Toast)
+
+import Message from 'muse-ui-message';
+Vue.use(Message);
