@@ -8,7 +8,8 @@ module.exports = {
     title: "洪少利的主页, 加载中...",
     meta: [
       { charset: 'utf-8' },
-      { renderer: 'webkit' },
+      { name: 'renderer', content: 'webkit' },
+      { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge,chrome=1' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0' },
       { hid: 'description', name: 'description', content: '这是洪少利的个人网站，也是个人主页，平时记录一些技术博客文章等等' },
       { hid: 'keywords', name: 'keywords', content: '洪少利,HongShaoli,洪少利的个人网站，洪少利的博客，洪少利的个人主页' }
@@ -77,7 +78,7 @@ module.exports = {
     // optimization: {
     //   splitChunks: true
     // },
-    extractCSS: { allChunks: true },
+    extractCSS: true,
     splitChunks: {
       layouts: false,
       pages: false, // by default true, will cause bad experience
