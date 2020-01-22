@@ -1,6 +1,6 @@
 <template>
-  <div v-cloak>
-    <Appbar :testData="testData" />
+  <div class="pt70">
+    <Appbar :title="testData.title" :backFn="toList"/>
     <Content :testData="testData" />
     <Comments :testData="comments" />
   </div>
@@ -8,9 +8,9 @@
 
 <script>
 export default {
-  name: 'Detail',
+  name: 'BlogDetail',
   components: {
-    Appbar: () => import('@/components/detail/Appbar'),
+    Appbar: () => import('@/components/common/Appbar'),
     Content: () => import('@/components/detail/Content'),
     Comments: () => import('@/components/detail/Comments')
   },
@@ -54,7 +54,15 @@ export default {
 
   },
   methods: {
-
+    toList () {
+      // 为了保持后退滚动条位置
+      const hasBackUrl = localStorage.getItem('hasBackUrl')
+      if (hasBackUrl === 'yes') {
+        window.history.back()
+      } else {
+        this.$router.push(`/`)
+      }
+    }
   }
 }
 </script>

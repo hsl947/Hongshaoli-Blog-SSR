@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="pt70">
+    <Appbar title="Blog-管理后台"/>
     <ListBtns :role="role" />
     <List :role="role" />
   </div>
@@ -12,6 +13,7 @@ export default {
     title: '洪少利的博客-admin'
   },
   components: {
+    Appbar: () => import('@/components/common/Appbar'),
     List: () => import('@/components/admin/List'),
     ListBtns: () => import('@/components/admin/ListBtns')
   },

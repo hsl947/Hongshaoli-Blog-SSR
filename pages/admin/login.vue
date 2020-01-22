@@ -1,11 +1,6 @@
 <template>
   <div class="login-container">
-    <mu-appbar style="width: 100%;" color="primary">
-      <mu-button slot="left" icon onclick="window.history.back()">
-        <i class="iconfont icon-fanhui"></i>
-      </mu-button>
-      <span>登录</span>
-    </mu-appbar>
+    <Appbar title="登录"/>
     <mu-form ref="form" :model="formData" class="mu-demo-form pt70">
       <mu-form-item :rules="userNameRules" label="用户名" help-text="" prop="userName">
         <mu-text-field @keyup.enter="submit" v-model="formData.userName" prop="userName" placeholder="请输入用户名"></mu-text-field>
@@ -26,7 +21,7 @@
 export default {
   name: 'BlogLogin',
   components: {
-
+    Appbar: () => import('@/components/common/Appbar')
   },
   head: {
     title: '洪少利的博客-login'

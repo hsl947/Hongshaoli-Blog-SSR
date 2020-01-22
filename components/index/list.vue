@@ -1,7 +1,7 @@
 <template>
-  <mu-load-more :loading="loading" @load="load" :loaded-all="finished" class="pt70">
+  <mu-load-more :loading="loading" @load="load" :loaded-all="finished">
     <mu-paper ref="container" :z-depth="1" class="demo-list-wrap">
-      <mu-list v-for="(item, index) in articles" :key="item._id" textline="three-line">
+      <mu-list v-for="item in articles" :key="item._id" textline="three-line">
         <mu-sub-header>
           {{ item.time | formatTime }}
           <p class="view-num">
@@ -32,7 +32,10 @@ export default {
   props: {
     finished: Boolean,
     loading: Boolean,
-    articles: Array
+    articles: {
+      type: Array,
+      default: () => []
+    }
   },
   data () {
     return {

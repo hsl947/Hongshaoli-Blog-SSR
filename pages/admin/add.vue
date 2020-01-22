@@ -1,11 +1,6 @@
 <template>
   <div class="container">
-    <mu-appbar style="width: 100%;" color="primary">
-      <mu-button slot="left" icon onclick="window.history.back()">
-        <i class="iconfont icon-fanhui"></i>
-      </mu-button>
-      <span>添加</span>
-    </mu-appbar>
+    <Appbar title="添加"/>
     <mu-form ref="form" :model="formData" class="mu-demo-form pt70">
       <mu-form-item :rules="titleRules" label="标题" help-text="" prop="title">
         <mu-text-field v-model="formData.title" prop="title" placeholder="请输入标题"></mu-text-field>
@@ -41,7 +36,8 @@ if (process.client) {
 export default {
   name: 'BlogAdd',
   components: {
-    quillEditor
+    quillEditor,
+    Appbar: () => import('@/components/common/Appbar')
   },
   head: {
     title: '洪少利的博客-add'
@@ -124,7 +120,7 @@ export default {
 
 <style>
   .ql-container{
-    height: 300px;
+    height: 480px;
   }
   .ql-container.ql-snow{
     border: 1px solid #ccc;

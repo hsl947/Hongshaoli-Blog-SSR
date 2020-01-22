@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <Drawer />
+  <div class="pt70">
     <List :articles="articles" :loading="loading" :finished="finished" />
-    <ToTop />
   </div>
 </template>
 
@@ -13,9 +11,7 @@ export default {
     title: '首页-洪少利的博客'
   },
   components: {
-    Drawer: () => import('@/components/index/Drawer'),
-    List: () => import('@/components/index/List'),
-    ToTop: () => import('@/components/index/ToTop')
+    List: () => import('@/components/index/List')
   },
   data () {
     return {}
@@ -46,7 +42,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 .mu-paper{
   background: none;
 }
@@ -57,9 +53,9 @@ export default {
   padding-bottom: 0;
   margin-bottom: 8px;
   background: #fff;
-}
-.mu-list>li{
-  border-bottom: solid 1px rgba(0,0,0,.12);
+  >li{
+    border-bottom: solid 1px rgba(0,0,0,.12);
+  }
 }
 .no-data{
   color: #999;
@@ -71,23 +67,24 @@ export default {
   font-size: 26px;
 }
 .view-num{
-    position: absolute;
-    right: 20px;
-    top: 0;
-    height: 48px;
-    line-height: 48px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-}
-.view-num .mu-icon{
-  font-size: 20px;
-  padding: 0 4px 0 8px;
-}
-.view-num .item{
+  position: absolute;
+  right: 20px;
+  top: 0;
+  height: 48px;
+  line-height: 48px;
+  font-size: 14px;
   display: flex;
   align-items: center;
+  .mu-icon{
+    font-size: 20px;
+    padding: 0 4px 0 8px;
+  }
+  .item{
+    display: flex;
+    align-items: center;
+  }
 }
+
 @keyframes refreshRotate{
   from {
     transform: rotate(0);

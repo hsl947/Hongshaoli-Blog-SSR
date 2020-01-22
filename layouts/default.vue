@@ -1,14 +1,18 @@
 <template>
   <div>
+    <Drawer />
     <nuxt class="router"/>
     <CanvasNest v-if="lazyLoad" />
+    <ToTop />
   </div>
 </template>
 <script>
 export default {
   name: 'App',
   components: {
-    CanvasNest: () => import('@/components/common/CanvasNest')
+    CanvasNest: () => import('@/components/common/CanvasNest'),
+    Drawer: () => import('@/components/common/Drawer'),
+    ToTop: () => import('@/components/common/ToTop')
   },
   data () {
     return {
@@ -148,7 +152,7 @@ html {
 }
 
 .router{
-  max-width: 750px;
+  max-width: 980px;
   margin: auto;
   position: absolute;
   top: 0;
