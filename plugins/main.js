@@ -18,7 +18,6 @@ Vue.filter('formatTime', (input) => {
   const minutes = isGt10(d.getMinutes())
   if (year) {
     return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes
-    // return year + '-' + month + '-' + day + ' ' + hour + ':' + minutes + ':' + seconds;
   } else {
     return ''
   }

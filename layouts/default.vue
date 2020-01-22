@@ -124,10 +124,10 @@ export default {
 }
 </script>
 <style>
-@import '@@/static/css/material-icons.css';
-@import '@@/static/css/iconfont.css';
-@import '@@/static/css/style.css';
-@import '@@/static/css/index.css';
+@import '@@/assets/css/material-icons.css';
+@import '@@/assets/css/iconfont.css';
+@import '@@/assets/css/style.css';
+@import '@@/assets/css/index.css';
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;

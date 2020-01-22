@@ -33,7 +33,7 @@
 <script>
 /* eslint-disable no-var */
 if (process.client) {
-  require('@@/static/js/highlight/highlight.pack')
+  require('@@/assets/js/highlight/highlight.pack')
   var { quillEditor, Quill } = require('vue-quill-editor')
   var { container, ImageExtend, QuillWatch } = require('quill-image-extend-module')
   Quill.register('modules/ImageExtend', ImageExtend)
