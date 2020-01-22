@@ -12,38 +12,38 @@ export default {
   head: {
     title: '首页-洪少利的博客'
   },
-  data() {
+  components: {
+    drawer: (resolve) => { require(['@/components/index/drawer'], resolve) },
+    toTop: (resolve) => { require(['@/components/index/toTop'], resolve) },
+    list: (resolve) => { require(['@/components/index/list'], resolve) }
+  },
+  data () {
     return {
-      
+
     }
   },
-  components: {
-    drawer: resolve => {require(['@/components/index/drawer'], resolve)},
-    toTop: resolve => {require(['@/components/index/toTop'], resolve)},
-    list: resolve => {require(['@/components/index/list'], resolve)}
+  computed: {
+    articles () {
+      return this.$store.state.list.data
+    },
+    loading () {
+      return this.$store.state.list.loading
+    },
+    finished () {
+      return this.$store.state.list.finished
+    }
   },
-  fetch({ store }) {
-    if(store.state.list.data.length) return;
+  fetch ({ store }) {
+    if (store.state.list.data.length) { return }
     return Promise.all([
       store.dispatch('fetchList')
     ])
   },
-  computed: {
-    articles() {
-      return this.$store.state.list.data
-    },
-    loading() {
-      return this.$store.state.list.loading
-    },
-    finished() {
-      return this.$store.state.list.finished
-    }
+  mounted () {
+
   },
   methods: {
-    
-  },
-  mounted() {
-    
+
   }
 }
 </script>

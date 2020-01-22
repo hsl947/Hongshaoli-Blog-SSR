@@ -1,27 +1,27 @@
 <template>
   <div class="ql-container ql-snow" style="border: none;height: auto;">
-    <div class="ql-editor" v-html="testData.content"></div>
+    <div v-html="testData.content" class="ql-editor"></div>
   </div>
 </template>
- 
+
 <script>
 export default {
-  name: 'appbar',
+  name: 'Appbar',
+  components: {},
   props: {
     testData: {
       type: Object,
-      default: {}
+      default: () => {}
     }
   },
-  data() {
+  data () {
     return {}
   },
-  components: {},
-  created() {},
-  mounted() {},
+  created () {},
+  mounted () {},
   methods: {}
 }
 </script>
- 
+
 <style>
 </style>

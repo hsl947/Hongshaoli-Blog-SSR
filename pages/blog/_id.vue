@@ -1,65 +1,65 @@
 <template>
   <div v-cloak>
-      <appbar :testData="testData"></appbar>
-      <contents :testData="testData"></contents>
-      <comments :testData="comments"></comments>
+    <appbar :testData="testData"></appbar>
+    <contents :testData="testData"></contents>
+    <comments :testData="comments"></comments>
   </div>
 </template>
 
 <script>
 export default {
-  name: "detail",
-  data() {
+  name: 'Detail',
+  components: {
+    appbar: (resolve) => { require(['@/components/detail/appbar'], resolve) },
+    contents: (resolve) => { require(['@/components/detail/contents'], resolve) },
+    comments: (resolve) => { require(['@/components/detail/comments'], resolve) }
+  },
+  data () {
     return {
-      
+
     }
   },
-  head(){
-    const {testData} = this;
-    return{
+  head () {
+    const { testData } = this
+    return {
       title: testData.title || '',
-      meta:[
-        {hid:'description', name:'description',content:testData.description},
-        {hid:'keywords', name:'keywords',content:testData.description}
+      meta: [
+        { hid: 'description', name: 'description', content: testData.description },
+        { hid: 'keywords', name: 'keywords', content: testData.description }
       ]
     }
   },
-  validate({ params, store }) {
+  validate ({ params, store }) {
     return params.id
   },
-  fetch({ store, params }) {
-    return Promise.all([
-      store.dispatch('fetchListDetail', {_id: params.id}),
-      store.dispatch('updateListNum', {_id: params.id}),
-      store.dispatch('fetchComments', {_id: params.id})
-    ])
-  },
   computed: {
-    testData() {
+    testData () {
       return this.$store.state.list.details
     },
-    comments() {
+    comments () {
       return this.$store.state.list.comments
     }
   },
-  components: {
-    appbar: resolve => {require(['@/components/detail/appbar'], resolve)},
-    contents: resolve => {require(['@/components/detail/contents'], resolve)},
-    comments: resolve => {require(['@/components/detail/comments'], resolve)}
+  fetch ({ store, params }) {
+    return Promise.all([
+      store.dispatch('fetchListDetail', { _id: params.id }),
+      store.dispatch('updateListNum', { _id: params.id }),
+      store.dispatch('fetchComments', { _id: params.id })
+    ])
+  },
+  created () {
+
+  },
+  mounted () {
+
   },
   methods: {
-    
-  },
-  created() {
 
-  },
-  mounted() {
-    
   }
-};
+}
 </script>
 
-<style> 
+<style>
   .mu-appbar{
     top: 0;
   }

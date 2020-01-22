@@ -7,35 +7,32 @@
 
 <script>
 export default {
-  name: "admin_index",
-  components: {
-    
-  },
+  name: 'AdminIndex',
   head: {
     title: '洪少利的博客-admin'
   },
-  data() {
+  components: {
+    list: (resolve) => { require(['@/components/admin/list'], resolve) },
+    listBtns: (resolve) => { require(['@/components/admin/listBtns'], resolve) }
+  },
+  filters: {
+
+  },
+  data () {
     return {
       role: ''
     }
   },
-  components: {
-    list: resolve => {require(['@/components/admin/list'], resolve)},
-    listBtns: resolve => {require(['@/components/admin/listBtns'], resolve)},
+  created () {
   },
-  filters: {
-   
+  mounted () {
+    this.$store.commit('getToken')
+    this.role = this.$store.state.admin_token
   },
   methods: {
-    
-  },
-  created() {
-  },
-  mounted() {
-    this.$store.commit('getToken');
-    this.role = this.$store.state.admin_token;
+
   }
-};
+}
 </script>
 
 <style>

@@ -1,3 +1,6 @@
+const path = require('path')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
 const express = require('express')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
@@ -7,23 +10,20 @@ const app = express()
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
 
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var routes = require('./server');
+const routes = require('./server')
 
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({ limit: '50mb' }))
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 
 /**
  * 设置应用路由
  */
-app.use(cookieParser('abcdef123456'));
-app.use('/', routes);
-app.use(express.static(path.join(__dirname, 'static')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(cookieParser('abcdef123456'))
+app.use('/', routes)
+app.use(express.static(path.join(__dirname, 'static')))
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
-async function start() {
+async function start () {
   // Init Nuxt.js
   const nuxt = new Nuxt(config)
 

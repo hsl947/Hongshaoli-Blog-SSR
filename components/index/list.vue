@@ -1,53 +1,53 @@
 <template>
-  <mu-load-more class="pt70" :loading="loading" @load="load" :loaded-all="finished">
-    <mu-paper :z-depth="1" class="demo-list-wrap" ref="container">
-      <mu-list textline="three-line" v-for="(item, index) in articles" :key="item._id">
+  <mu-load-more :loading="loading" @load="load" :loaded-all="finished" class="pt70">
+    <mu-paper ref="container" :z-depth="1" class="demo-list-wrap">
+      <mu-list v-for="(item, index) in articles" :key="item._id" textline="three-line">
         <mu-sub-header>
-          {{item.time | formatTime}}
+          {{ item.time | formatTime }}
           <p class="view-num">
-            <span class="item" v-if="item.comments.length">
-              <i class=" mu-icon material-icons mu-icon-right" style="user-select: none;">comment</i> {{item.comments.length}}
+            <span v-if="item.comments.length" class="item">
+              <i class=" mu-icon material-icons mu-icon-right" style="user-select: none;">comment</i> {{ item.comments.length }}
             </span>
-            <span class="item" v-if="item.view">
-              <i class=" mu-icon material-icons mu-icon-right" style="user-select: none;">visibility</i> {{item.view}}
+            <span v-if="item.view" class="item">
+              <i class=" mu-icon material-icons mu-icon-right" style="user-select: none;">visibility</i> {{ item.view }}
             </span>
-          </p>   
+          </p>
         </mu-sub-header>
-        <mu-list-item button :to="'/blog/'+item._id">
+        <mu-list-item :to="'/blog/'+item._id" button>
           <mu-list-item-content>
             <mu-list-item-title v-text="item.title"></mu-list-item-title>
             <mu-list-item-sub-title v-text="item.description"></mu-list-item-sub-title>
           </mu-list-item-content>
         </mu-list-item>
       </mu-list>
-      <p class="no-data" v-if="finished">- 我也是有底线的 -</p>
+      <p v-if="finished" class="no-data">- 我也是有底线的 -</p>
     </mu-paper>
   </mu-load-more>
 </template>
- 
+
 <script>
 export default {
-  name: 'list',
+  name: 'List',
+  components: {},
   props: {
-      finished: Boolean,
-      loading: Boolean,
-      articles: Array
+    finished: Boolean,
+    loading: Boolean,
+    articles: Array
   },
-  data() {
+  data () {
     return {
-      
+
     }
   },
-  components: {},
-  created() {},
+  created () {},
   methods: {
-    load() {
+    load () {
       this.$store.dispatch('fetchList', this.nextPageParams())
     },
-    toDetail(item, index) {
+    toDetail (item, index) {
       this.$router.push(`/blog/${item._id}`)
     },
-    nextPageParams() {
+    nextPageParams () {
       return {
         page: this.$store.state.list.page + 1
       }
@@ -55,6 +55,6 @@ export default {
   }
 }
 </script>
- 
+
 <style>
 </style>

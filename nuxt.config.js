@@ -5,7 +5,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: "洪少利的主页, 加载中...",
+    title: '洪少利的主页, 加载中...',
     meta: [
       { charset: 'utf-8' },
       { name: 'renderer', content: 'webkit' },
@@ -31,19 +31,19 @@ module.exports = {
   plugins: [
     {
       src: '~plugins/MuseUI',
-      ssr: true,
+      ssr: true
     },
     {
       src: '~plugins/main',
-      ssr: true,
+      ssr: true
     },
     {
       src: '~plugins/vue-quill-editor',
-      ssr: false,
+      ssr: false
     },
     {
       src: '~plugins/fastclick',
-      ssr: false,
+      ssr: false
     },
     '~/plugins/route'
   ],
@@ -60,7 +60,7 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    proxy: true, // 开启proxy
+    proxy: true // 开启proxy
     // baseURL: process.env.NODE_ENV === 'development'
     //           ?`http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`
     //           :`http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}/api`,
@@ -84,21 +84,21 @@ module.exports = {
       pages: false, // by default true, will cause bad experience
       commons: true
     },
-    extend(config, ctx) {
+    extend (config, ctx) {
     }
   },
-  vendor: ['muse-ui', 'axios'],   //防止被打包多次
+  vendor: ['muse-ui', 'axios'], // 防止被打包多次
   server: {
     port: 3000, // default: 3000
-    host: '0.0.0.0', // default: localhost
+    host: '0.0.0.0' // default: localhost
   },
   proxy: {
     '/api': {
       target: 'http://localhost:3000', // 代理地址
       changeOrigin: true,
       pathRewrite: {
-        '^/api': '', //将 /api 替换掉
-      },
-    },
+        '^/api': '' // 将 /api 替换掉
+      }
+    }
   }
 }

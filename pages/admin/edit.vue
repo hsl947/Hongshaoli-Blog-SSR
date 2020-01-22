@@ -1,51 +1,56 @@
 <template>
   <div class="container">
     <mu-appbar style="width: 100%;" color="primary">
-      <mu-button icon slot="left" onclick="window.history.back()">
+      <mu-button slot="left" icon onclick="window.history.back()">
         <i class="iconfont icon-fanhui"></i>
       </mu-button>
-      <span>编辑 - {{title}}</span>
+      <span>编辑 - {{ title }}</span>
     </mu-appbar>
     <mu-form ref="form" :model="formData" class="mu-demo-form pt70">
-      <mu-form-item label="标题" help-text="" prop="title" :rules="titleRules">
+      <mu-form-item :rules="titleRules" label="标题" help-text="" prop="title">
         <mu-text-field v-model="formData.title" prop="title" placeholder="请输入标题"></mu-text-field>
       </mu-form-item>
-      <mu-form-item label="描述" prop="description" :rules="descriptionRules">
-          <mu-text-field v-model="formData.description" prop="description" placeholder="请输入文章描述"></mu-text-field>
+      <mu-form-item :rules="descriptionRules" label="描述" prop="description">
+        <mu-text-field v-model="formData.description" prop="description" placeholder="请输入文章描述"></mu-text-field>
       </mu-form-item>
       <mu-form-item label="内容" prop="content">
-        <quill-editor v-model="formData.content"
-            ref="myQuillEditor"
-            :options="editorOption"
-            @change="onEditorChange($event)">
+        <quill-editor
+          ref="myQuillEditor"
+          v-model="formData.content"
+          :options="editorOption"
+          @change="onEditorChange($event)">
         </quill-editor>
       </mu-form-item>
       <mu-form-item style="white-space: nowrap;">
-        <mu-button color="primary" @click="submit">提交</mu-button>
+        <mu-button @click="submit" color="primary">提交</mu-button>
         <mu-button @click="clear">重置</mu-button>
-        <mu-button color="error" @click="del">删除</mu-button>
+        <mu-button @click="del" color="error">删除</mu-button>
       </mu-form-item>
     </mu-form>
   </div>
 </template>
 
 <script>
+/* eslint-disable no-var */
 if (process.client) {
-  require('@@/static/js/highlight/highlight.pack');
-  var { quillEditor, Quill } =  require('vue-quill-editor');
-  var {container, ImageExtend, QuillWatch} =  require('quill-image-extend-module')
+  require('@@/static/js/highlight/highlight.pack')
+  var { quillEditor, Quill } = require('vue-quill-editor')
+  var { container, ImageExtend, QuillWatch } = require('quill-image-extend-module')
   Quill.register('modules/ImageExtend', ImageExtend)
 }
 
 export default {
-  name: "blog_edit",
+  name: 'BlogEdit',
   components: {
     quillEditor
   },
   head: {
     title: '洪少利的博客-edit'
   },
-  data() {
+  filters: {
+
+  },
+  data () {
     return {
       editorOption: {
         placeholder: '请输入内容',
@@ -56,13 +61,13 @@ export default {
             name: 'img',
             action: '/file/upload',
             response: (res) => {
-              return res.url;
+              return res.url
             }
           },
           toolbar: {
-            container: container,
+            container,
             handlers: {
-              'image': function () {
+              'image' () {
                 QuillWatch.emit(this.quill.id)
               }
             }
@@ -72,79 +77,75 @@ export default {
       title: '',
       formData: {},
       titleRules: [
-        { validate: (val) => !!val, message: '标题不能为空'}
+        { validate: val => !!val, message: '标题不能为空' }
       ],
       descriptionRules: [
-        { validate: (val) => !!val, message: '描述不能为空'}
+        { validate: val => !!val, message: '描述不能为空' }
       ],
       contentRules: [
-        { validate: (val) => !!val, message: '内容不能为空'}
+        { validate: val => !!val, message: '内容不能为空' }
       ]
     }
   },
-  filters: {
-
+  created () {
+  },
+  mounted () {
+    const param = this.$route.params
+    const storeId = localStorage.getItem('edit_id')
+    this.formData._id = param._id || storeId
+    localStorage.setItem('edit_id', this.formData._id)
+    this.$axios.post('/list/detail', { _id: this.formData._id }).then((data) => {
+      const _data = data.data
+      this.formData = _data.data
+      this.title = _data.data.title
+    })
   },
   methods: {
-     submit () {
+    submit () {
       this.$refs.form.validate().then((result) => {
-        if(result){
-          this.$axios.post('/admin/edit', this.formData).then(({data})=> {
-            if(data.status == 200){
-              this.$toast.success(data.message);
+        if (result) {
+          this.$axios.post('/admin/edit', this.formData).then(({ data }) => {
+            if (data.status === 200) {
+              this.$toast.success(data.message)
               this.$router.replace({
                 path: '/admin'
-              });
-            }else{
-              this.$toast.error(data.message);
+              })
+            } else {
+              this.$toast.error(data.message)
             }
-          });
+          })
         }
-      });
+      })
     },
     clear () {
-      this.$refs.form.clear();
-      this.formData = {};
+      this.$refs.form.clear()
+      this.formData = {}
     },
-    onEditorChange({ quill, html, text }) {
+    onEditorChange ({ quill, html, text }) {
       // console.log(text)
       // console.log('editor change!', html)
-      this.formData.content = html;
+      this.formData.content = html
     },
     del () {
       this.$confirm('确定要删除？', '警告', {
         type: 'warning'
       }).then(({ result }) => {
         if (result) {
-         this.$axios.post('/admin/delete', this.formData).then(({data})=> {
-            if(data.status == 200){
-              this.$toast.success(data.message);
+          this.$axios.post('/admin/delete', this.formData).then(({ data }) => {
+            if (data.status === 200) {
+              this.$toast.success(data.message)
               this.$router.replace({
                 path: '/admin'
-              });
-            }else{
-              this.$toast.error(data.message);
+              })
+            } else {
+              this.$toast.error(data.message)
             }
-          });
+          })
         } else {}
-      });
-
+      })
     }
-  },
-  created() {
-  },
-  mounted() {
-    let param = this.$route.params;
-    let storeId = localStorage.getItem('edit_id');
-    this.formData._id = param._id || storeId;
-    localStorage.setItem('edit_id', this.formData._id);
-    this.$axios.post('/list/detail', {_id: this.formData._id}).then((data)=> {
-        let _data = data.data;
-        this.formData = _data.data;
-        this.title = _data.data.title;
-    });
   }
-};
+}
 </script>
 
 <style>
