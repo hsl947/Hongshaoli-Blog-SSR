@@ -1,14 +1,14 @@
 <template>
   <div>
     <nuxt class="router"/>
-    <canvas-nest v-if="lazyLoad"></canvas-nest>
+    <CanvasNest v-if="lazyLoad" />
   </div>
 </template>
 <script>
 export default {
   name: 'App',
   components: {
-    canvasNest: (resolve) => { require(['@/components/canvas-nest'], resolve) }
+    CanvasNest: () => import('@/components/common/CanvasNest')
   },
   data () {
     return {

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <list-btns :role="role"></list-btns>
-    <list :role="role"></list>
+    <ListBtns :role="role" />
+    <List :role="role" />
   </div>
 </template>
 
@@ -12,8 +12,8 @@ export default {
     title: '洪少利的博客-admin'
   },
   components: {
-    list: (resolve) => { require(['@/components/admin/list'], resolve) },
-    listBtns: (resolve) => { require(['@/components/admin/listBtns'], resolve) }
+    List: () => import('@/components/admin/List'),
+    ListBtns: () => import('@/components/admin/ListBtns')
   },
   filters: {
 

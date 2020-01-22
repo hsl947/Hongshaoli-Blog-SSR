@@ -1,8 +1,8 @@
 <template>
   <div v-cloak>
-    <appbar :testData="testData"></appbar>
-    <contents :testData="testData"></contents>
-    <comments :testData="comments"></comments>
+    <Appbar :testData="testData" />
+    <Content :testData="testData" />
+    <Comments :testData="comments" />
   </div>
 </template>
 
@@ -10,9 +10,9 @@
 export default {
   name: 'Detail',
   components: {
-    appbar: (resolve) => { require(['@/components/detail/appbar'], resolve) },
-    contents: (resolve) => { require(['@/components/detail/contents'], resolve) },
-    comments: (resolve) => { require(['@/components/detail/comments'], resolve) }
+    Appbar: () => import('@/components/detail/Appbar'),
+    Content: () => import('@/components/detail/Content'),
+    Comments: () => import('@/components/detail/Comments')
   },
   data () {
     return {

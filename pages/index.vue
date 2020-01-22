@@ -1,8 +1,8 @@
 <template>
   <div>
-    <drawer></drawer>
-    <list :articles="articles" :loading="loading" :finished="finished"></list>
-    <to-top></to-top>
+    <Drawer />
+    <List :articles="articles" :loading="loading" :finished="finished" />
+    <ToTop />
   </div>
 </template>
 
@@ -13,14 +13,12 @@ export default {
     title: '首页-洪少利的博客'
   },
   components: {
-    drawer: (resolve) => { require(['@/components/index/drawer'], resolve) },
-    toTop: (resolve) => { require(['@/components/index/toTop'], resolve) },
-    list: (resolve) => { require(['@/components/index/list'], resolve) }
+    Drawer: () => import('@/components/index/Drawer'),
+    List: () => import('@/components/index/List'),
+    ToTop: () => import('@/components/index/ToTop')
   },
   data () {
-    return {
-
-    }
+    return {}
   },
   computed: {
     articles () {
@@ -49,14 +47,6 @@ export default {
 </script>
 
 <style>
-/* .container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-} */
 .mu-paper{
   background: none;
 }
