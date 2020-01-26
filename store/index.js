@@ -12,7 +12,8 @@ export const state = () => {
       finished: false,
       page: 1
     },
-    details: {}
+    details: {},
+    projects: []
   }
 }
 
@@ -53,6 +54,9 @@ export const mutations = {
   },
   updateListPage (state, action) {
     state.list.page = action
+  },
+  updateProjects (state, action) {
+    state.projects = action
   }
 }
 
@@ -102,6 +106,16 @@ export const actions = {
     return this.$axios.$post(`/list/comments`, params)
       .then((res) => {
         commit('fetchComments', res)
+      })
+      .catch((e) => {
+
+      })
+  },
+  // 获取我的项目列表
+  fetchProjects ({ commit }, params = {}) {
+    return this.$axios.$post(`/project/list`, params)
+      .then((res) => {
+        commit('updateProjects', res.data)
       })
       .catch((e) => {
 

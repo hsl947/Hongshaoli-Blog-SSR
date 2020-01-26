@@ -10,6 +10,7 @@
  * 用法：<canvas-nest></canvas-nest>
  */
 import vueCanvasNest from 'vue-canvas-nest'
+import { isMobile } from '~/assets/js/common'
 export default {
   name: 'CanvasNest',
   components: {
@@ -25,16 +26,11 @@ export default {
     }
   },
   created () {
-    if (this.isMobile()) {
+    if (isMobile()) {
       this.count = 33
     }
   },
-  methods: {
-    isMobile () {
-      const flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
-      return flag
-    }
-  }
+  methods: {}
 }
 </script>
 

@@ -20,9 +20,9 @@
         <mu-list-item :to="'/admin'" @click="open=false" button>
           <mu-list-item-title>🐱Blog-管理后台</mu-list-item-title>
         </mu-list-item>
-        <!-- <mu-list-item :to="'/project'" @click="open=false" button>
+        <mu-list-item :to="'/project'" @click="open=false" button>
           <mu-list-item-title>🦊我的项目/作品</mu-list-item-title>
-        </mu-list-item> -->
+        </mu-list-item>
         <mu-list-item button target="_blank" href="https://www.hongshaoli.cn/">
           <mu-list-item-title>🐨关于我</mu-list-item-title>
         </mu-list-item>

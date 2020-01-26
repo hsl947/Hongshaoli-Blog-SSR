@@ -19,7 +19,16 @@ const userSchema = new Schema({
 })
 const userModel = db.model('User', userSchema)
 
+const projectSchema = new Schema({
+  title: { type: String },
+  url: { type: String },
+  img: { type: String },
+  content: { type: String }
+})
+const projectModel = db.model('Project', projectSchema)
+
 module.exports = {
   blog: blogModel,
-  user: userModel
+  user: userModel,
+  project: projectModel
 }

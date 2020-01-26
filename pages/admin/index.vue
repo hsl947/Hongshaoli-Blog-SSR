@@ -37,21 +37,19 @@ export default {
 }
 </script>
 
-<style>
-  .mu-table th, .mu-table td{
-    vertical-align: middle;
-  }
-  .mu-table th{
-    background: #2196f3;
-    color: #fff;
+<style lang="less">
+  .mu-table{
+    min-height: 510px;
+    th, td{
+      vertical-align: middle;
+    }
+    th{
+      background: #2196f3;
+      color: #fff;
+    }
   }
   .mu-pagination{
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-  }
-  .container{
-    padding-bottom: 50px;
+    padding: 20px;
   }
   .mu-button{
     margin: 10px 0;

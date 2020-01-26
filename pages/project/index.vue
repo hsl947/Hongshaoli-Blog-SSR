@@ -1,64 +1,20 @@
 <template>
-  <div class="pt70">
+  <div class="project-container pt70">
     <Appbar title="我的项目/作品"/>
-    <mu-list textline="three-line">
-      <mu-sub-header>今天</mu-sub-header>
-      <mu-list-item :ripple="false" avatar button>
-        <mu-list-item-action>
-          <mu-avatar>
-            <!-- <img src="../../assets/images/avatar1.jpg"> -->
-          </mu-avatar>
-        </mu-list-item-action>
-        <mu-list-item-content>
-          <mu-list-item-title>这个周末一起吃饭么?</mu-list-item-title>
-          <mu-list-item-sub-title>
-            周末要来你这里出差，要不要一起吃个饭呀，实在编不下去了,哈哈哈哈哈哈
-          </mu-list-item-sub-title>
-        </mu-list-item-content>
-      </mu-list-item>
-      <mu-divider></mu-divider>
-      <mu-list-item :ripple="false" avatar button>
-        <mu-list-item-action>
-          <mu-avatar>
-            <!-- <img src="../../assets/images/avatar2.jpg"> -->
-          </mu-avatar>
-        </mu-list-item-action>
-        <mu-list-item-content>
-          <mu-list-item-title>Alex Qin</mu-list-item-title>
-          <mu-list-item-sub-title>
-            我们去看电影，最近有部烂片上映，又有吐槽的了
-          </mu-list-item-sub-title>
-        </mu-list-item-content>
-      </mu-list-item>
-      <mu-divider></mu-divider>
-      <mu-list-item :ripple="false" avatar button>
-        <mu-list-item-action>
-          <mu-avatar>
-            <!-- <img src="../../assets/images/avatar3.jpg"> -->
-          </mu-avatar>
-        </mu-list-item-action>
-        <mu-list-item-content>
-          <mu-list-item-title>LOL</mu-list-item-title>
-          <mu-list-item-sub-title>
-            周末一起 LOL
-          </mu-list-item-sub-title>
-        </mu-list-item-content>
-      </mu-list-item>
-      <mu-divider></mu-divider>
-      <mu-list-item :ripple="false" avatar button>
-        <mu-list-item-action>
-          <mu-avatar>
-            <!-- <img src="../../assets/images/uicon.jpg"> -->
-          </mu-avatar>
-        </mu-list-item-action>
-        <mu-list-item-content>
-          <mu-list-item-title>LOL</mu-list-item-title>
-          <mu-list-item-sub-title>
-            实在编不下去，这就是个demo
-          </mu-list-item-sub-title>
-        </mu-list-item-content>
-      </mu-list-item>
-    </mu-list>
+    <div class="project-list">
+      <mu-sub-header>我的项目</mu-sub-header>
+      <mu-card
+        v-for="item in projecttData"
+        :key="item.title"
+        @click="openUrl(item.url)"
+        class="item"
+        title="点击查看">
+        <mu-card-media :title="item.title">
+          <img :src="item.img">
+        </mu-card-media>
+        <mu-card-text>{{ item.content }} </mu-card-text>
+      </mu-card>
+    </div>
   </div>
 </template>
 
@@ -73,12 +29,62 @@ export default {
   data () {
     return {}
   },
-  computed: {},
+  computed: {
+    projecttData () {
+      return this.$store.state.projects
+    }
+  },
+  fetch ({ store, params }) {
+    return Promise.all([
+      store.dispatch('fetchProjects')
+    ])
+  },
   mounted () {},
-  methods: {}
+  methods: {
+    openUrl (url) {
+      window.open(url, '_blank')
+    }
+  }
 }
 </script>
 
-<style>
-
+<style lang="less">
+  .project-container {
+    .project-list{
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      .item{
+        width: 40%;
+        flex-shrink: 0;
+        margin: 0 5% 20px;
+        font-size: 20px;
+        transition: all .3s;
+        &:hover{
+          box-shadow: 0 2px 6px -1px rgba(0,0,0,.2), 0 1px 6px 0 rgba(0,0,0,.14), 0 1px 9px 0 rgba(0,0,0,.12);
+        }
+      }
+      @media screen and (max-width: 750px) {
+        .item{
+          width: 90%;
+        }
+      }
+    }
+    .mu-card-media{
+      min-height: 170px;
+    }
+    .mu-sub-header {
+      padding-left: 5%;
+    }
+    .mu-card-text{
+      line-height: 18px;
+    }
+    .mu-card-media-title{
+      padding: 6px 12px;
+      text-align: center;
+      .mu-card-title{
+        font-size: 20px;
+      }
+    }
+  }
 </style>

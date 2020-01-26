@@ -3,8 +3,10 @@ const path = require('path')
 const express = require('express')
 const router = express.Router()
 const multer = require('multer') // 接收图片
+
 const Blog = require('./db/front').blog
 const User = require('./db/front').user
+const Project = require('./db/front').project
 
 router.get('/test', (req, res, next) => {
   res.send('test api ok!')
@@ -57,9 +59,9 @@ router.post('/list/detail', (req, res, next) => {
 })
 
 // admin文章列表数据
-router.post('/admin/list', (req, res, next) => {
+router.post('/admin/list', async (req, res, next) => {
   let all = 0
-  Blog.count({}, (e, count) => { all = count })
+  await Blog.count({}, (e, count) => { all = count })
   const page = req.body.page ? +req.body.page : 1
   const limit = req.body.limit ? +req.body.limit : 20
   const skip = (page - 1) * limit
@@ -296,6 +298,20 @@ router.post('/list/addComment', async (req, res, next) => {
     })
   }).catch((e) => {
 
+  })
+})
+
+// 我的项目-列表数据
+router.post('/project/list', (req, res, next) => {
+  Project.find({}).then((_data) => {
+    res.json({
+      status: 200,
+      message: '查询成功',
+      data: _data,
+      total: _data.length
+    })
+  }).catch((err) => {
+    console.log(err)
   })
 })
 
