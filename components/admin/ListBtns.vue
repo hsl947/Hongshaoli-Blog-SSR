@@ -29,7 +29,7 @@ export default {
         return
       }
       this.$router.push({
-        path: '/admin/add'
+        path: '/admin/edit'
       })
     },
     exit () {

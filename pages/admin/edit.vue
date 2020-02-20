@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Appbar :title="'编辑 - '+ title"/>
+    <Appbar :title="title"/>
     <mu-form ref="form" :model="formData" class="mu-demo-form pt70">
       <mu-form-item :rules="titleRules" label="标题" help-text="" prop="title">
         <mu-text-field v-model="formData.title" prop="title" placeholder="请输入标题"></mu-text-field>
@@ -19,7 +19,7 @@
       <mu-form-item style="white-space: nowrap;">
         <mu-button @click="submit" color="primary">提交</mu-button>
         <mu-button @click="clear">重置</mu-button>
-        <mu-button @click="del" color="error">删除</mu-button>
+        <mu-button v-if="formData._id" @click="del" color="error">删除</mu-button>
       </mu-form-item>
     </mu-form>
   </div>
@@ -41,7 +41,7 @@ export default {
     Appbar: () => import('@/components/common/Appbar')
   },
   head: {
-    title: '洪少利的博客-edit'
+    title: '洪少利的博客-添加/编辑'
   },
   filters: {
 
@@ -70,7 +70,8 @@ export default {
           }
         }
       },
-      title: '',
+      title: '添加',
+      subUrl: '/admin/add',
       formData: {},
       titleRules: [
         { validate: val => !!val, message: '标题不能为空' }
@@ -85,22 +86,28 @@ export default {
   },
   created () {
   },
+  beforeDestroy () {
+    localStorage.setItem('edit_id', null)
+  },
   mounted () {
-    const param = this.$route.params
+    const { _id } = this.$route.params
     const storeId = localStorage.getItem('edit_id')
-    this.formData._id = param._id || storeId
-    localStorage.setItem('edit_id', this.formData._id)
-    this.$axios.post('/list/detail', { _id: this.formData._id }).then((data) => {
-      const _data = data.data
-      this.formData = _data.data
-      this.title = _data.data.title
-    })
+    if (_id || storeId) {
+      // 编辑状态
+      this.formData._id = _id || storeId
+      this.subUrl = '/admin/edit'
+      localStorage.setItem('edit_id', this.formData._id)
+      this.$axios.post('/list/detail', { _id: this.formData._id }).then(({ data }) => {
+        Object.assign(this.formData, { ...data.data })
+        this.title = `编辑 - ${data.data.title}`
+      })
+    }
   },
   methods: {
     submit () {
       this.$refs.form.validate().then((result) => {
         if (result) {
-          this.$axios.post('/admin/edit', this.formData).then(({ data }) => {
+          this.$axios.post(this.subUrl, this.formData).then(({ data }) => {
             if (data.status === 200) {
               this.$toast.success(data.message)
               this.$router.replace({
@@ -150,8 +157,5 @@ export default {
   }
   .ql-container.ql-snow{
     border: 1px solid #ccc;
-  }
-  .ql-snow .ql-editor pre.ql-syntax{
-      font-family: 'Sailec Light', sans-serif;
   }
 </style>

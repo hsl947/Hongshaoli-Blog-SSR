@@ -41,10 +41,11 @@ export default {
     }
   },
   fetch ({ store, params }) {
+    const paramsId = { _id: params.id }
     return Promise.all([
-      store.dispatch('fetchListDetail', { _id: params.id }),
-      store.dispatch('updateListNum', { _id: params.id }),
-      store.dispatch('fetchComments', { _id: params.id })
+      store.dispatch('fetchListDetail', paramsId),
+      store.dispatch('updateListNum', paramsId),
+      store.dispatch('fetchComments', paramsId)
     ])
   },
   created () {
@@ -81,12 +82,5 @@ export default {
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
-  }
-  .ql-container.ql-snow{
-    font-size: 16px;
-    line-height: 28px;
-  }
-  .ql-snow .ql-editor pre.ql-syntax{
-      font-family: 'Sailec Light', sans-serif;
   }
 </style>
