@@ -112,7 +112,7 @@ export default {
 </script>
 
 <style scoped>
-
+@import '@@/assets/css/index.css';
 #wrap {
   height: auto;
   min-height: 286px;
