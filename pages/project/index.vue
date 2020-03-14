@@ -10,7 +10,7 @@
         class="item"
         title="点击查看">
         <mu-card-media :title="item.title">
-          <img :src="item.img">
+          <img :src="item.img" class="project-img">
         </mu-card-media>
         <mu-card-text>{{ item.content }} </mu-card-text>
       </mu-card>
@@ -62,6 +62,10 @@ export default {
         transition: all .3s;
         &:hover{
           box-shadow: 0 2px 6px -1px rgba(0,0,0,.2), 0 1px 6px 0 rgba(0,0,0,.14), 0 1px 9px 0 rgba(0,0,0,.12);
+        }
+        .project-img{
+          height: 288px;
+          object-fit: cover;
         }
       }
       @media screen and (max-width: 750px) {
