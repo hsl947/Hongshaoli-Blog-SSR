@@ -87,7 +87,7 @@ export default {
   created () {
   },
   beforeDestroy () {
-    localStorage.setItem('edit_id', null)
+    localStorage.removeItem('edit_id')
   },
   mounted () {
     const { _id } = this.$route.params
