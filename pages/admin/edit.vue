@@ -107,6 +107,7 @@ export default {
     submit () {
       this.$refs.form.validate().then((result) => {
         if (result) {
+          this.formData.time = new Date()
           this.$axios.post(this.subUrl, this.formData).then(({ data }) => {
             if (data.status === 200) {
               this.$toast.success(data.message)
