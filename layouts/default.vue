@@ -4,7 +4,7 @@
     <nuxt class="router"/>
     <CanvasNest v-if="lazyLoad" />
     <ToTop />
-    <!-- <p class="copyright">©2018-2020 hongshali.com 版权所有 ICP证：闽ICP备18029655号</p> -->
+    <p class="copyright">©2018-2020 hongshali.com 版权所有 ICP证：闽ICP备18029655号</p>
   </div>
 </template>
 <script>
