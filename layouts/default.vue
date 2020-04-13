@@ -4,7 +4,7 @@
     <nuxt class="router"/>
     <CanvasNest v-if="lazyLoad" />
     <ToTop />
-    <p class="copyright">©2018-2020 hongshali.com 版权所有 ICP证：闽ICP备18029655号</p>
+    <!-- <p class="copyright">©2018-2020 hongshali.com 版权所有 ICP证：闽ICP备18029655号</p> -->
   </div>
 </template>
 <script>
@@ -62,11 +62,11 @@ html {
 .router{
   max-width: 980px;
   margin: auto;
-  /* position: absolute;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0; */
+  right: 0;
   transition:  all cubic-bezier(.55,0,.1,1) .3s ;
   padding-bottom: 55px;
 }
