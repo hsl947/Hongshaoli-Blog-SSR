@@ -29,7 +29,7 @@ export default {
       initStatic()
       setTimeout(() => {
         this.lazyLoad = true
-      }, 3000)
+      }, 500)
     })
   },
   methods: {}
@@ -62,12 +62,12 @@ html {
 .router{
   max-width: 980px;
   margin: auto;
-  position: relative;
-  /* top: 0;
+  /* position: absolute;
+  top: 0;
   bottom: 0;
   left: 0;
-  right: 0; */
-  z-index: 2;
+  right: 0;
+  z-index: 2; */
   transition:  all cubic-bezier(.55,0,.1,1) .3s ;
   padding-bottom: 55px;
 }
