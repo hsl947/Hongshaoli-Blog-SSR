@@ -139,8 +139,8 @@
 }
 .globe.fixed-side{
   position: fixed;
-  left: 40px;
-  bottom: 80px;
+  left: 4%;
+  top: 400px;
   z-index: -1;
 }
 .globe .bird {
