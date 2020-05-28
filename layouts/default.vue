@@ -4,6 +4,8 @@
     <nuxt class="router"/>
     <CanvasNest v-if="lazyLoad" />
     <ToTop />
+    <DozingBird />
+    <BusyPigeons />
     <p class="copyright">©2018-2020 hongshali.com 版权所有 ICP证：闽ICP备18029655号</p>
   </div>
 </template>
@@ -14,7 +16,9 @@ export default {
   components: {
     CanvasNest: () => import('@/components/common/CanvasNest'),
     Drawer: () => import('@/components/common/Drawer'),
-    ToTop: () => import('@/components/common/ToTop')
+    ToTop: () => import('@/components/common/ToTop'),
+    DozingBird: () => import('@/components/common/DozingBird'),
+    BusyPigeons: () => import('@/components/common/BusyPigeons')
   },
   data () {
     return {
