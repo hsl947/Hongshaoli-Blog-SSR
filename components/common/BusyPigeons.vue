@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isMobile" class="birds fixed-side">
+  <div class="birds fixed-side">
     <div class="birds__hatdove">
       <div class="birds__hatdove-shadow"></div>
       <div class="birds__hatdove-head">
@@ -70,15 +70,12 @@
 /**
  * 眨眼的小鸟
  */
-import { isMobile } from '~/assets/js/common'
 export default {
   name: 'DozingBird',
   components: {},
   props: {},
   data () {
-    return {
-      isMobile: isMobile()
-    }
+    return {}
   },
   created () {},
   methods: {}

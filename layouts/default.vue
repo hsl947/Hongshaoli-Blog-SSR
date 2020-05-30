@@ -4,8 +4,8 @@
     <nuxt class="router"/>
     <CanvasNest v-if="lazyLoad" />
     <ToTop />
-    <DozingBird />
-    <BusyPigeons />
+    <DozingBird v-if="!isSmScreen"/>
+    <BusyPigeons v-if="!isSmScreen" />
     <p class="copyright">©2018-2020 hongshali.com 版权所有 ICP证：闽ICP备18029655号</p>
   </div>
 </template>
@@ -22,7 +22,8 @@ export default {
   },
   data () {
     return {
-      lazyLoad: false
+      lazyLoad: false,
+      isSmScreen: true
     }
   },
   watch: {},
@@ -34,6 +35,9 @@ export default {
       setTimeout(() => {
         this.lazyLoad = true
       }, 500)
+      if (document.body.clientWidth > 1440) {
+        this.isSmScreen = false
+      }
     })
   },
   methods: {}

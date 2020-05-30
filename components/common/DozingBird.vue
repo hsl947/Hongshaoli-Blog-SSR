@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isMobile" class="globe fixed-side">
+  <div class="globe fixed-side">
     <div class="bird">
       <div class="body">
         <div class="eye left"></div>
@@ -19,15 +19,12 @@
 /**
  * 眨眼的小鸟
  */
-import { isMobile } from '~/assets/js/common'
 export default {
   name: 'DozingBird',
   components: {},
   props: {},
   data () {
-    return {
-      isMobile: isMobile()
-    }
+    return {}
   },
   created () {},
   methods: {}
