@@ -1,0 +1,8 @@
+version: "3"
+services:
+  ssr:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - "8888:3000"
