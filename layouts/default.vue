@@ -6,7 +6,7 @@
     <ToTop />
     <DozingBird v-if="!isSmScreen"/>
     <BusyPigeons v-if="!isSmScreen" />
-    <p class="copyright">©2018-2020 hongshali.com 版权所有 ICP证：闽ICP备18029655号</p>
+    <p class="copyright">©2018-2020 hongshali.com 版权所有 ICP证：<a target="_blank" href="https://beian.miit.gov.cn">闽ICP备18029655号-1</a></p>
   </div>
 </template>
 <script>
