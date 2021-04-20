@@ -21,7 +21,7 @@
     "cross-env": "^5.2.1",
     "express": "^4.16.4",
     "fastclick": "^1.0.6",
-    "mongoose": "^5.4.0",
+    "mongoose": "^5.7.5",
     "multer": "^1.4.1",
     "muse-ui": "^3.0.2",
     "muse-ui-loading": "^0.2.0",
