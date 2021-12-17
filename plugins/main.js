@@ -1,10 +1,4 @@
 import Vue from 'vue'
-Vue.prototype.$extend = function (target, options) {
-  for (const name in options) {
-    target[name] = options[name]
-  }
-  return target
-}
 
 function isGt10 (n) {
   return n < 10 ? '0' + n : n

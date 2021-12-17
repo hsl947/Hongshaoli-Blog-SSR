@@ -32,15 +32,23 @@ export default {
     this.$nextTick(() => {
       initFloatText()
       initStatic()
+      this.initCanvas()
+      this.setSmWidth()
+    })
+  },
+  methods: {
+    initCanvas () {
       setTimeout(() => {
+        // 延迟加载 CanvasNest 防卡顿
         this.lazyLoad = true
       }, 500)
+    },
+    setSmWidth () {
       if (document.body.clientWidth > 1440) {
         this.isSmScreen = false
       }
-    })
-  },
-  methods: {}
+    }
+  }
 }
 </script>
 <style>
