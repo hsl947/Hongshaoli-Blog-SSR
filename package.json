@@ -29,7 +29,7 @@
     "muse-ui-progress": "^0.1.0",
     "muse-ui-toast": "^0.3.0",
     "node-sass": "^4.12.0",
-    "nuxt": "^2.11.0",
+    "nuxt": "^2.15.8",
     "quill-image-extend-module": "^1.1.2",
     "quill-video-extend-module": "^1.0.0",
     "sass-loader": "^7.1.0",
